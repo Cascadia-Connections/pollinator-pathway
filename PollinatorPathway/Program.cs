@@ -9,11 +9,11 @@ var DefaultConnectionString = builder.Configuration.GetConnectionString("AppDefa
 var IdentityConnectionString = builder.Configuration.GetConnectionString("AppIdentity-Mac");
 //Enable for use of Sqlite on Mac
 //builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlite(DefaultConnectionString));
-//builder.Services.AddDbContext<AppIdentityDbContext>(options => options.UseSqlite(IdentityConnectionString));
+builder.Services.AddDbContext<AppIdentityDbContext>(options => options.UseSqlite(IdentityConnectionString));
 
 //Enable for use of SqlServer on Windows
 //builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(DefaultConnectionString));
-builder.Services.AddDbContext<AppIdentityDbContext>(options => options.UseSqlServer(IdentityConnectionString));
+//builder.Services.AddDbContext<AppIdentityDbContext>(options => options.UseSqlServer(IdentityConnectionString));
 
 // Add Developer, Identity and Controller Services
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
