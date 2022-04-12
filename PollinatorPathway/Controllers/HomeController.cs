@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PollinatorPathway.ViewModels;
 
@@ -13,10 +14,8 @@ public class HomeController : Controller
         _logger = logger;
     }
 
-    public IActionResult Index()
-    {
-        return View();
-    }
+   
+    [Authorize]
     public IActionResult AdminPortal()
     {
         return View();
