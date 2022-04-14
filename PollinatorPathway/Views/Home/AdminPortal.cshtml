@@ -1,14 +1,20 @@
-﻿@{
+﻿@addTagHelper "*, Microsoft.AspNetCore.Mvc.TagHelpers"
+@{
     ViewData["Title"] = "Admin Portal";
 }
 
 <fieldset>
-    <form>
         <h1>Welcome, *First Name*</h1>
-
-        <input class = "button" type="button" value="Create Profile"/>
+    <form asp-action="ProfileCreation">
+        <input  class = "button" type="submit" value="Create Profile"/>
+    </form>
+    <form>
         <input class = "button" type="button" value="Create Account"/>
+    </form>
+    <form>
         <input class = "button" type="button" value="Approve Content"/>
+    </form>
+    <form>
         <input class = "button" type="button" value="Search User Base"/>
     </form>
 </fieldset>
