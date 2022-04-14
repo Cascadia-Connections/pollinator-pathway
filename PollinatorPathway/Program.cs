@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using PollinatorPathway.Areas.Identity.Data;
 using PollinatorPathway.Data;
+using PollinatorPathway.Model;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,7 +15,7 @@ var IdentityConnectionString = builder.Configuration.GetConnectionString("AppIde
 //builder.Services.AddDbContext<AppIdentityDbContext>(options => options.UseSqlite(IdentityConnectionString));
 
 //Enable for use of SqlServer on Windows
-//builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(DefaultConnectionString));
+builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(DefaultConnectionString));
 //builder.Services.AddDbContext<AppIdentityDbContext>(options => options.UseSqlServer(IdentityConnectionString));
 builder.Services.AddDbContext<AppIdentityDbContext>(options => options.UseSqlServer(IdentityConnectionString));
 
