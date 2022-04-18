@@ -1,5 +1,6 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @using PollinatorPathway.Areas.Identity.Data
+@using System.Security.Claims
 @inject SignInManager<PollinatorPathwayUser> SignInManager
 @inject UserManager<PollinatorPathwayUser> UserManager
 
@@ -7,7 +8,7 @@
 @if (SignInManager.IsSignedIn(User))
 {
     <li class="nav-item">
-        <a  class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity?.Name!</a>
+        <a  class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.FindFirstValue("FirstName")!</a>
     </li>
     <li class="nav-item">
         <form  class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("AdminPortal", "Home", new { area = "" })">
