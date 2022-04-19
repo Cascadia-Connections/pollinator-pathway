@@ -31,9 +31,15 @@ body {
     margin: 4px 2px;
     cursor: pointer;
 }
-    .button:hover {
-        background-color: #188C81;
-    }
-    .button:active {
-        background-color: #10564f;
-    }
+.button:hover {
+    background-color: #709d2b;
+}
+.button:active {
+    background-color: #188C81;
+}
+nav {
+    background-color: #188C81;
+}
+.selection{
+    color: #FFFFFF;
+}
