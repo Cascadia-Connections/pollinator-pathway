@@ -1,0 +1,51 @@
+﻿@model PollinatorPathway.ViewModels.ProfileViewModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    Layout = "_Layout";
+    ViewBag.Title = "Create User Profile";
+
+}
+
+
+<div class="row">
+    <div class="col-md-4">
+       <form asp-action="CreateProfile" asp-controller="Home">
+            <h2>Create a new Profile.</h2>
+            <hr />
+             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+              <div class="form-floating">
+                <input asp-for="@Model.FirstName" class="form-control" autocomplete="firstname" aria-required="true" />
+                <label asp-for="@Model.FirstName"></label>
+                <span asp-validation-for="@Model.FirstName" class="text-danger"></span>
+            </div>
+              <div class="form-floating">
+                <input asp-for="@Model.LastName" class="form-control" autocomplete="lastname" aria-required="true" />
+                <label asp-for="@Model.LastName"></label>
+                <span asp-validation-for="@Model.LastName" class="text-danger"></span>
+            </div>
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-floating">
+                <input asp-for="@Model.EmailAddress" class="form-control" autocomplete="username" aria-required="true" />
+                <label asp-for="@Model.EmailAddress"></label>
+                <span asp-validation-for="@Model.EmailAddress" class="text-danger"></span>
+            </div>
+             <div class="form-floating">
+                <input asp-for="@Model.Phone" class="form-control" autocomplete="username" aria-required="true" />
+                <label asp-for="@Model.Phone"></label>
+                <span asp-validation-for="@Model.Phone" class="text-danger"></span>
+            </div>
+            <div class="form-floating">
+                <input asp-for="@Model.Password" class="form-control" autocomplete="new-password" aria-required="true" />
+                <label asp-for="@Model.Password"></label>
+                <span asp-validation-for="@Model.Password" class="text-danger"></span>
+            </div>
+            <div class="form-floating">
+                <input asp-for="@Model.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" />
+                <label asp-for="@Model.ConfirmPassword"></label>
+                <span asp-validation-for="@Model.ConfirmPassword" class="text-danger"></span>
+            </div>
+            <input type="submit" class="w-100 btn btn-lg btn-primary" value="Submit" />
+          
+        </form>
+    </div>
+  </div>

@@ -1,20 +1,21 @@
-﻿@addTagHelper "*, Microsoft.AspNetCore.Mvc.TagHelpers"
+﻿@model PollinatorPathway.Areas.Identity.Data.PollinatorPathwayUser
+@addTagHelper "*, Microsoft.AspNetCore.Mvc.TagHelpers"
 @{
     ViewData["Title"] = "Admin Portal";
 }
 
 <fieldset>
-        <h1>Welcome, *First Name*</h1>
-    <form asp-action="ProfileCreation">
-        <input  class = "button" type="submit" value="Create Profile"/>
-    </form>
-    <form>
-        <input class = "button" type="button" value="Create Account"/>
-    </form>
-    <form>
+        <h1>Welcome, @Model.FirstName</h1>
+    <div>
+        <input  class = "button" type="submit" onclick="location.href='@Url.Action("CreateProfile", "Home")'"  value="Create Profile"/>
+    </div>
+    <div>
+        <input class = "button" type="button" asp-area="Identity" asp-page="/Account/Register" value="Create Account"/>
+    </div>
+    <div>
         <input class = "button" type="button" value="Approve Content"/>
-    </form>
-    <form>
-        <input class = "button" type="button" value="Search User Base"/>
-    </form>
+    </div>
+    <div>
+        <input class = "button" type="button" onclick="location.href='@Url.Action("getUsers", "Home")'" value="Search User Base"/>
+    </div>
 </fieldset>
