@@ -1,4 +1,6 @@
-﻿namespace PollinatorPathway.Model
+﻿
+
+namespace PollinatorPathway.Model
 {
     public class UserProfile
     {
