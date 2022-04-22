@@ -122,8 +122,8 @@ public class HomeController : Controller
     {
         IEnumerable<UploadedImage> images = new List<UploadedImage>()
         {
-            new UploadedImage{ImageId = 1,imageUrl="https://www.schoolsin.com/Merchant5/graphics/00000001/61016_Explore_the_Ocean.jpg",IsApprovced=true },
-            new UploadedImage{ImageId = 2,imageUrl="https://www.schoolsin.com/Merchant5/graphics/00000001/61016_Explore_the_Ocean.jpg",IsApprovced=false}
+            new UploadedImage{Id = 1,imageUrl="https://www.schoolsin.com/Merchant5/graphics/00000001/61016_Explore_the_Ocean.jpg",IsApprovced=true },
+            new UploadedImage{Id = 2,imageUrl="https://www.schoolsin.com/Merchant5/graphics/00000001/61016_Explore_the_Ocean.jpg",IsApprovced=false}
 
         };
         return View(images);

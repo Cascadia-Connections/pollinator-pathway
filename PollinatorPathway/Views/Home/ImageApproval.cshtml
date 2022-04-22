@@ -20,7 +20,7 @@
     {
         <tr>
             <td>
-                @image.ImageId
+                @image.Id
             </td>
             <td>
                 @image.IsApprovced
@@ -31,13 +31,13 @@
              
           <td class="rightedge">
                 <a asp-action="ImageRemoval" asp-controller="Home"
-                   asp-route-id="@image.ImageId">Remome</a> |
+                   asp-route-id="@image.Id">Remome</a> |
                 <a asp-action="ImageUpdate" asp-controller="Home"
-                   asp-route-id="@image.ImageId">Update</a>
+                   asp-route-id="@image.Id">Update</a>
                    <a asp-action="ImageUpdate" asp-controller="Home"
-                   asp-route-id="@image.ImageId">Approve</a>
+                   asp-route-id="@image.Id">Approve</a>
                     <a asp-action="ImageUpdate" asp-controller="Home"
-                   asp-route-id="@image.ImageId">Reject</a>
+                   asp-route-id="@image.Id">Reject</a>
             </td>
            
            
