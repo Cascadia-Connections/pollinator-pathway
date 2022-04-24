@@ -1,0 +1,47 @@
+﻿@model IEnumerable<PollinatorPathway.Model.UploadedImage>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewBag.Title = "Admin Search";
+    Layout = "_Layout";
+}
+
+<h3>User Profiles </h3>
+
+
+<table class="table">
+    <tr>
+        <th>ImageId</th>
+        <th>IsApproved</th>
+        <th>Image File(click to view)</th>
+        <th>Action</th>
+    </tr>
+
+    @foreach (var image in Model)
+    {
+        <tr>
+            <td>
+                @image.Id
+            </td>
+            <td>
+                @image.IsApprovced
+            </td>
+             <td>
+                @image.imageUrl
+            </td>
+             
+          <td class="rightedge">
+                <a asp-action="ImageRemoval" asp-controller="Home"
+                   asp-route-id="@image.Id">Remome</a> |
+                <a asp-action="ImageUpdate" asp-controller="Home"
+                   asp-route-id="@image.Id">Update</a>
+                   <a asp-action="ImageUpdate" asp-controller="Home"
+                   asp-route-id="@image.Id">Approve</a>
+                    <a asp-action="ImageUpdate" asp-controller="Home"
+                   asp-route-id="@image.Id">Reject</a>
+            </td>
+           
+           
+        </tr>
+    }
+
+</table>

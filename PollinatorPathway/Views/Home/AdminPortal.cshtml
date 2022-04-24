@@ -13,7 +13,7 @@
         <input class = "button" type="button" asp-area="Identity" asp-page="/Account/Register" value="Create Account"/>
     </div>
     <div>
-        <input class = "button" type="button" value="Approve Content"/>
+        <input class = "button" type="button" onclick="location.href='@Url.Action("ImageApproval", "Home")'"value="Approve Content"/>
     </div>
     <div>
         <input class = "button" type="button" onclick="location.href='@Url.Action("getUsers", "Home")'" value="Search User Base"/>

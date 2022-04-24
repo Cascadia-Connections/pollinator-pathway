@@ -116,6 +116,18 @@ public class HomeController : Controller
         _appDbContext.SaveChanges();
         return RedirectToAction("getUsers");
     }
+
+    [HttpGet]
+    public IActionResult ImageApproval()
+    {
+        IEnumerable<UploadedImage> images = new List<UploadedImage>()
+        {
+            new UploadedImage{Id = 1,imageUrl="https://www.schoolsin.com/Merchant5/graphics/00000001/61016_Explore_the_Ocean.jpg",IsApprovced=true },
+            new UploadedImage{Id = 2,imageUrl="https://www.schoolsin.com/Merchant5/graphics/00000001/61016_Explore_the_Ocean.jpg",IsApprovced=false}
+
+        };
+        return View(images);
+    }
     public IActionResult Privacy()
     {
         return View();
