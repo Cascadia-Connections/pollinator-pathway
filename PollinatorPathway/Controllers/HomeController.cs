@@ -23,20 +23,20 @@ public class HomeController : Controller
         _manager = manager;
     }
 
-   
-   
+
+
     public IActionResult AdminPortal()
     {
-        var userId=  _manager.GetUserId(HttpContext.User);
-        PollinatorPathwayUser user =_identityDbContext.Users.FirstOrDefault (u=> u.Id==userId);
-       
+        var userId = _manager.GetUserId(HttpContext.User);
+        PollinatorPathwayUser user = _identityDbContext.Users.FirstOrDefault(u => u.Id == userId);
+
         return View(user);
     }
-    
+
     [HttpGet]
     public IActionResult CreateProfile()
     {
-       
+
         return View(new ProfileViewModel());
     }
 
@@ -55,46 +55,46 @@ public class HomeController : Controller
                 Phone = userProVM.Phone
 
             };
-           
-           _appDbContext.Add(up);
-           _appDbContext.SaveChanges();
+
+            _appDbContext.Add(up);
+            _appDbContext.SaveChanges();
         }
 
-            return RedirectToAction("AdminPortal");
+        return RedirectToAction("AdminPortal");
     }
 
     [HttpGet]
     public IActionResult getUsers()
     {
         IEnumerable<UserProfile> users = _appDbContext.UserProfiles;
-        return View("UsersList",users);
+        return View("UsersList", users);
     }
     [HttpPost]
-    public IActionResult UpdateProfile(ProfileViewModel userProVM,long Id)
+    public IActionResult UpdateProfile(ProfileViewModel userProVM, long Id)
     {
 
-        
-            UserProfile up = new UserProfile
-            {
-                Id=Id,
-                FirstName = userProVM.FirstName,
-                LastName = userProVM.LastName,
-                EmailAddress = userProVM.EmailAddress,
-                Password = userProVM.Password,
-                Phone = userProVM.Phone
 
-            };
+        UserProfile up = new UserProfile
+        {
+            Id = Id,
+            FirstName = userProVM.FirstName,
+            LastName = userProVM.LastName,
+            EmailAddress = userProVM.EmailAddress,
+            Password = userProVM.Password,
+            Phone = userProVM.Phone
 
-            _appDbContext.Update(up);
-            _appDbContext.SaveChanges();
-        
+        };
+
+        _appDbContext.Update(up);
+        _appDbContext.SaveChanges();
+
 
         return RedirectToAction("getUsers");
     }
     [HttpGet]
     public IActionResult UpdateProfile(long id)
     {
-        var user = _appDbContext.UserProfiles.FirstOrDefault (u=>u.Id==id);
+        var user = _appDbContext.UserProfiles.FirstOrDefault(u => u.Id == id);
         ProfileViewModel profileVM = new ProfileViewModel
         {
             UserId = id,
@@ -122,8 +122,8 @@ public class HomeController : Controller
     {
         IEnumerable<UploadedImage> images = new List<UploadedImage>()
         {
-            new UploadedImage{Id = 1,imageUrl="https://www.schoolsin.com/Merchant5/graphics/00000001/61016_Explore_the_Ocean.jpg",IsApprovced=true },
-            new UploadedImage{Id = 2,imageUrl="https://www.schoolsin.com/Merchant5/graphics/00000001/61016_Explore_the_Ocean.jpg",IsApprovced=false}
+            new UploadedImage{Id = 1,ImageUrl="https://www.schoolsin.com/Merchant5/graphics/00000001/61016_Explore_the_Ocean.jpg",IsApprovced=true },
+            new UploadedImage{Id = 2,ImageUrl="https://www.schoolsin.com/Merchant5/graphics/00000001/61016_Explore_the_Ocean.jpg",IsApprovced=false}
 
         };
         return View(images);
