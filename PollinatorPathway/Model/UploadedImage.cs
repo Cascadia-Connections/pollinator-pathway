@@ -11,6 +11,6 @@ namespace PollinatorPathway.Model
 
         [Required]
         public IFormFile File { get; set; }
-
+         
     }
 }
