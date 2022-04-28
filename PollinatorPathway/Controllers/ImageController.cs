@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Hosting;
 using PollinatorPathway.Areas.Identity.Data;
 using PollinatorPathway.Data;
 using PollinatorPathway.Model;
@@ -10,64 +11,44 @@ using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
 
 namespace PollinatorPathway.Controllers
 {
-    public class ImageController : Controller
-    {
-        [Route("api/[controller]/[action]")]
-        [ApiController]
-        public class UserController : ControllerBase
-        {
-            private readonly AppDbContext _context;
-            private IHostingEnvironment _hostingEnvironment;
-            public UserController(AppDbContext context, IHostingEnvironment environment)
-            {
-                _context = context;
-                _hostingEnvironment = environment ?? throw new ArgumentNullException(nameof(environment));
-            }
+    
+    [Route("api/[controller]")]
+    [ApiController]
 
-            // Post: api/User/UpdateUserData
-            [HttpPost]
-            public async Task<IActionResult> UpdateUserData([FromForm] UploadedImage imageData)
+    public class ImageController : ControllerBase
+    {
+        private static IWebHostEnvironment _webHost;
+         public ImageController(IWebHostEnvironment webHost)
+        {
+            _webHost = webHost;
+        }
+        [HttpPost]
+        [Route("upload")]
+        public async Task<string> Upload([FromForm] UploadedImage obj){
+            if(obj.File.Length > 0)
             {
-                Dictionary<string, string> resp = new Dictionary<string, string>();
-                if (!ModelState.IsValid)
-                {
-                    return BadRequest(ModelState);
-                }
                 try
                 {
-                    //getting user from the database
-                    var userobj = await _context.UploadedImages.FindAsync(imageData.Id);
-                    if (userobj != null)
+                    if(!Directory.Exists(_webHost.WebRootPath + "\\Images\\"))
                     {
-                        //Get the complete folder path for storing the profile image inside it.  
-                        var path = Path.Combine(_hostingEnvironment.WebRootPath, "images/");
-
-                        //checking if "images" folder exist or not exist then create it
-                        if ((!Directory.Exists(path)))
-                        {
-                            Directory.CreateDirectory(path);
-                        }
-                        //getting file name and combine with path and save it
-                        string filename = imageData.ImageUrl;
-                        using (var fileStream = new FileStream(Path.Combine(path, filename), FileMode.Create))
-                        {
-                            await imageData.File.CopyToAsync(fileStream);
-                        }
-                        //save folder path 
-                        userobj.ImageUrl = "images/" + filename;
-                        await _context.SaveChangesAsync();
-                        //return api with response
-                        resp.Add("status ", "success");
+                        Directory.CreateDirectory(_webHost.WebRootPath + "\\Images\\");
                     }
-
+                    using (FileStream filestream = System.IO.File.Create(_webHost.WebRootPath + "\\Images\\" + obj.File.FileName))
+                    {
+                        obj.File.CopyTo(filestream);
+                        filestream.Flush();
+                        return "\\Images\\" + obj.File.FileName;
+                    }
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
-                    return BadRequest(ex.Message);
+                    throw;
                 }
-                return Ok(resp);
+            }
+            else
+            {
+                return "Upload Failed";
             }
         }
-
     }
 }
