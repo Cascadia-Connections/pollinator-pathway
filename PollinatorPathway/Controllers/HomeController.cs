@@ -120,12 +120,7 @@ public class HomeController : Controller
     [HttpGet]
     public IActionResult ImageApproval()
     {
-        IEnumerable<UploadedImage> images = new List<UploadedImage>()
-        {
-            new UploadedImage{Id = 1,IsApprovced=true },
-            new UploadedImage{Id = 2,IsApprovced=false}
-
-        };
+        IEnumerable<UploadedImage> images = _appDbContext.UploadedImages.ToList();
         return View(images);
     }
     public IActionResult Privacy()
@@ -138,5 +133,7 @@ public class HomeController : Controller
     {
         return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
     }
+
+    
 }
 
