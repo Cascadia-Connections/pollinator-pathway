@@ -11,6 +11,7 @@
 <table class="table">
     <tr>
         <th>ImageId</th>
+        <th>Name</th>
         <th>IsApproved</th>
         <th>Image File(click to view)</th>
         <th>Action</th>
@@ -22,22 +23,30 @@
             <td>
                 @image.Id
             </td>
+             <td>
+                @image.Name
+            </td>
             <td>
-                @image.IsApprovced
+                @image.IsApproved
             </td>
              <td>
-                @image.imageUrl
+                @{
+                  var base64 = Convert.ToBase64String(@image.File);
+                  var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+                 }
+
+              <img src="@imgSrc" />
             </td>
              
           <td class="rightedge">
                 <a asp-action="ImageRemoval" asp-controller="Home"
-                   asp-route-id="@image.Id">Remome</a> |
+                   asp-route-id="@image.Id">Remove</a> |
                 <a asp-action="ImageUpdate" asp-controller="Home"
-                   asp-route-id="@image.Id">Update</a>
+                   asp-route-id="@image.Id">Update</a>|
                    <a asp-action="ImageUpdate" asp-controller="Home"
-                   asp-route-id="@image.Id">Approve</a>
+                   asp-route-id="@image.Id">Approve</a>|
                     <a asp-action="ImageUpdate" asp-controller="Home"
-                   asp-route-id="@image.Id">Reject</a>
+                   asp-route-id="@image.Id">Reject</a>|
             </td>
            
            

@@ -2,10 +2,10 @@
 {
     public class UploadedImage
     {
-            public int Id { get; set; }
-            public string imageUrl { get; set; }
-            public Boolean IsApprovced { get; set; }
-            public UserProfile Profile { get; set; }
-
+        public long Id { get; set; }
+        public Boolean IsApproved { get; set; }
+        public byte[] File { get; set; }
+        public string Name { get; set; }
+         
     }
 }
