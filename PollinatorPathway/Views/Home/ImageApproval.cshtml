@@ -34,7 +34,6 @@
                 @{
                     var base64 = Convert.ToBase64String(@image.File);
                     var imgSrc = String.Format("data:image/jpg;base64,{0}", base64);
-                    File.WriteAllBytes(@"C:/temp/kep" + @image.Id + ".gif", @image.File);
                 }
 
               <img src="@imgSrc" class = "Image"/>
