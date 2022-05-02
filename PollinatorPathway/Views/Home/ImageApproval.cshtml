@@ -1,0 +1,54 @@
+﻿@model IEnumerable<PollinatorPathway.Model.UploadedImage>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewBag.Title = "Admin Search";
+    Layout = "_Layout";
+}
+
+<h3>User Profiles </h3>
+
+
+<table class="table">
+    <tr>
+        <th>ImageId</th>
+        <th>Name</th>
+        <th>IsApproved</th>
+        <th>Image File(click to view)</th>
+        <th>Action</th>
+    </tr>
+
+    @foreach (var image in Model)
+    {
+        <tr>
+            <td>
+                @image.Id
+            </td>
+             <td>
+                @image.Name
+            </td>
+            <td>
+                @image.IsApproved
+            </td>
+             <td>
+                @{
+                  var base64 = Convert.ToBase64String(@image.File);
+                  var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+                 }
+
+              <img src="@imgSrc" />
+            </td>
+             
+          <td class="rightedge">
+                   <a asp-action="AproveImage" asp-controller="Home"
+                   asp-route-id="@image.Id">Approve</a>|
+                    <a asp-action="UpdateImage" asp-controller="Home"
+                   asp-route-id="@image.Id">Reject</a>|
+                    <a asp-action="RemoveImage" asp-controller="Home"
+                   asp-route-id="@image.Id">Remove</a>
+            </td>
+           
+           
+        </tr>
+    }
+
+</table>
