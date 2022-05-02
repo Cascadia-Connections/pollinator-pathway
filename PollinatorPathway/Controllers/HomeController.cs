@@ -116,6 +116,13 @@ public class HomeController : Controller
         _appDbContext.SaveChanges();
         return RedirectToAction("getUsers");
     }
+
+    [HttpGet]
+    public IActionResult ImageApproval()
+    {
+        IEnumerable<UploadedImage> images = _appDbContext.UploadedImages.ToList();
+        return View(images);
+    }
     public IActionResult Privacy()
     {
         return View();
@@ -126,5 +133,7 @@ public class HomeController : Controller
     {
         return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
     }
+
+    
 }
 

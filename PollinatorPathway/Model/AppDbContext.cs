@@ -9,6 +9,7 @@ namespace PollinatorPathway.Model
 
        
         public DbSet<UserProfile> UserProfiles { get; set; }
-    
+        public DbSet<UploadedImage> UploadedImages { get; set; }
+
     }
 }
