@@ -63,7 +63,7 @@ namespace PollinatorPathway.Controllers
                 using (MemoryStream ms = new MemoryStream())
 
                 { // copy the file to memory stream 
-                    img.CopyToAsync(ms);
+                    img.CopyTo(ms);
 
                     // set the byte array 
                     UploadedImage.File = ms.ToArray();
@@ -76,7 +76,7 @@ namespace PollinatorPathway.Controllers
             }
             else
             {
-                return BadRequest("Hi User");
+                return BadRequest("Upload Failed");
             }
            
         }

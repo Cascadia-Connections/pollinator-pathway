@@ -6,6 +6,7 @@
         public Boolean IsApproved { get; set; }
         public byte[] File { get; set; }
         public string Name { get; set; }
+
          
     }
 }

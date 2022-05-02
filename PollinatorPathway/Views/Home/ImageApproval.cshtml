@@ -24,18 +24,20 @@
                 @image.Id
             </td>
              <td>
-                @image.Name
+                 @image.Name;
+               
             </td>
             <td>
                 @image.IsApproved
             </td>
              <td>
                 @{
-                  var base64 = Convert.ToBase64String(@image.File);
-                  var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
-                 }
+                    var base64 = Convert.ToBase64String(@image.File);
+                    var imgSrc = String.Format("data:image/jpg;base64,{0}", base64);
+                    File.WriteAllBytes(@"C:/temp/kep" + @image.Id + ".gif", @image.File);
+                }
 
-              <img src="@imgSrc" />
+              <img src="@imgSrc" class = "Image"/>
             </td>
              
           <td class="rightedge">
