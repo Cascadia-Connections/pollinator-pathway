@@ -120,8 +120,26 @@ public class HomeController : Controller
     [HttpGet]
     public IActionResult ImageApproval()
     {
-        IEnumerable<UploadedImage> images = _appDbContext.UploadedImages.ToList();
+        IEnumerable<UploadedImage> images = _appDbContext.UploadedImages.Where(img=> img.IsApproved==false).ToList();
         return View(images);
+    }
+
+    [HttpGet]
+    public IActionResult RemoveImage(long id)
+    {
+        _appDbContext.Remove(new UploadedImage { Id = id });
+        _appDbContext.SaveChanges();
+        return RedirectToAction("ImageApproval");
+    }
+    [HttpGet]
+    public IActionResult ApproveImage(long id)
+    {
+        var image= _appDbContext.UploadedImages.FirstOrDefault(img=>img.Id==id);
+        UploadedImage imageModel = image;
+        imageModel.IsApproved = true;
+        _appDbContext.Update(imageModel);
+        _appDbContext.SaveChanges();
+        return RedirectToAction("ImageApproval");
     }
     public IActionResult Privacy()
     {

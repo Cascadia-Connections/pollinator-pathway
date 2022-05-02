@@ -12,7 +12,6 @@
     <tr>
         <th>ImageId</th>
         <th>Name</th>
-        <th>IsApproved</th>
         <th>Image File(click to view)</th>
         <th>Action</th>
     </tr>
@@ -24,19 +23,10 @@
                 @image.Id
             </td>
              <td>
-<<<<<<< HEAD
                 @image.Name
-=======
-                 @image.Name;
-               
->>>>>>> 84bf2291337d5b9e4ffade2588b875ed7bc9906b
-            </td>
-            <td>
-                @image.IsApproved
             </td>
              <td>
                 @{
-<<<<<<< HEAD
                   var base64 = Convert.ToBase64String(@image.File);
                   var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
                  }
@@ -45,30 +35,11 @@
             </td>
              
           <td class="rightedge">
-                   <a asp-action="AproveImage" asp-controller="Home"
-                   asp-route-id="@image.Id">Approve</a>|
-                    <a asp-action="UpdateImage" asp-controller="Home"
-                   asp-route-id="@image.Id">Reject</a>|
+                   <a asp-action="ApproveImage" asp-controller="Home"
+                   asp-route-id="@image.Id">Approve</a>
                     <a asp-action="RemoveImage" asp-controller="Home"
                    asp-route-id="@image.Id">Remove</a>
-=======
-                    var base64 = Convert.ToBase64String(@image.File);
-                    var imgSrc = String.Format("data:image/jpg;base64,{0}", base64);
-                }
 
-              <img src="@imgSrc" class = "Image"/>
-            </td>
-             
-          <td class="rightedge">
-                <a asp-action="ImageRemoval" asp-controller="Home"
-                   asp-route-id="@image.Id">Remove</a> |
-                <a asp-action="ImageUpdate" asp-controller="Home"
-                   asp-route-id="@image.Id">Update</a>|
-                   <a asp-action="ImageUpdate" asp-controller="Home"
-                   asp-route-id="@image.Id">Approve</a>|
-                    <a asp-action="ImageUpdate" asp-controller="Home"
-                   asp-route-id="@image.Id">Reject</a>|
->>>>>>> 84bf2291337d5b9e4ffade2588b875ed7bc9906b
             </td>
            
            
