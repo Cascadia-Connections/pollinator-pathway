@@ -5,12 +5,12 @@
     Layout = "_Layout";
 }
 
-<h3>User Profiles </h3>
+<h3>Approve User Uploaded Content</h3>
 
 
 <table class="table">
     <tr>
-        <th>ImageId</th>
+        <th>Image Id</th>
         <th>Name</th>
         <th>Image File(click to view)</th>
         <th>Action</th>
@@ -31,7 +31,8 @@
                   var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
                  }
 
-              <img src="@imgSrc" />
+              <img src="@imgSrc" class = "img" />
+              <!-- onclick="enlargeImg()" id="img" width = 200 -->
             </td>
              
           <td class="rightedge">
