@@ -10,7 +10,9 @@
         <input  class = "button" type="submit" onclick="location.href='@Url.Action("CreateProfile", "Home")'"  value="Create Profile"/>
     </div>
     <div>
-        <input class = "button" type="button" asp-area="Identity" asp-page="/Account/Register" value="Create Account"/>
+        @*<input class = "button" type="button" asp-area="Identity" asp-page="/Account/Register" value="Create Account"/>*@
+       <a  class="button" asp-area="Identity" asp-page="/Account/Register">Create Account</a>
+  
     </div>
     <div>
         <input class = "button" type="button" onclick="location.href='@Url.Action("ImageApproval", "Home")'"value="Approve Content"/>
