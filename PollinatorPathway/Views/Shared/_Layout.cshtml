@@ -36,7 +36,25 @@
             @RenderBody()
         </main>
     </div>
-
+    <script>
+            var count = 0;
+            img = document.getElementById("img");
+            // Function to set image dimensions
+            function enlargeImg() {
+                if(count == 0){
+                    this.img.style.width = "1000px";
+                    this.img.style.height = "auto";
+                    this.img.style.transition = "width 0.5s ease";
+                    count ++;
+                }
+                else{
+                    this.img.style.width = "200px";
+                    this.img.style.height = "auto";
+                    this.img.style.transition = "width 0.5s ease";
+                    count--;
+                }
+            }
+        </script>
     <footer class="border-top footer text-muted">
         <div class="container">
             &copy; 2022 - PollinatorPathway - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>

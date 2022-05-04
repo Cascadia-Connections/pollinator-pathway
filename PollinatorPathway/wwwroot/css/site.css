@@ -43,6 +43,11 @@ nav {
 .selection{
     color: #FFFFFF;
 }
-.Image{
-    width: 20vh;
+.img {
+    width: 200px;
+    transition: width 0.5s ease;
+}
+.img:hover {
+    width: 1000px;
+    transition: width 0.5s ease;
 }
