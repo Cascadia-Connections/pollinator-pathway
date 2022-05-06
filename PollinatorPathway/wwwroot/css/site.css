@@ -74,12 +74,13 @@ input[type=button] {
 }
 
 @media screen and (max-height: 450px) {
-.sidenav {
-   padding-top: 15px;
-}
+    .sidenav {
+        padding-top: 15px;
+    }
 
-.sidenav a {
-   font-size: 18px;
+    .sidenav a {
+        font-size: 18px;
+    }
 }
 .selection {
    color: #FFFFFF;
@@ -87,10 +88,9 @@ input[type=button] {
 
 .img {
    width: 200px;
-   transition: width 0.5s ease;
+   transition: width 0.8s ease;
 }
-
 .img:hover {
    width: 1000px;
-   transition: width 0.5s ease;
+   transition: width 0.8s ease;
 }
