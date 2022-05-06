@@ -16,38 +16,81 @@ html {
 body {
   margin-bottom: 60px;
 }
-
-.button {
-    color: #FFFFFF;
-    background-color: #90BF49;
-    border: none;
-    border-radius: 12px;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-}
-.button:hover {
-    background-color: #709d2b;
-}
-.button:active {
-    background-color: #188C81;
-}
 nav {
     background-color: #188C81;
+    z-index: 2;
 }
-.selection{
-    color: #FFFFFF;
+input[type=button] {
+    background-color: #90BF49;
+    border: #90BF49;
 }
+.basenav {
+    height: 100%;
+    width: 50px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #90BF49;
+    overflow-x: hidden;
+    padding-top: 60px;
+}
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #90BF49;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 100px;
+}
+
+.sidenav a, .button {
+   padding: 8px 8px 8px 32px;
+   text-decoration: none;
+   font-size: 25px;
+   color: #FFFFFF;
+   display: block;
+   transition: 0.3s;
+}
+
+.sidenav a:hover, .button:hover {
+   color: #188C81;
+}
+.sidenav a:active, .button:active {
+   color: #0a3733;
+}
+
+.sidenav .closebtn {
+   position: absolute;
+   top: 0;
+   right: 25px;
+   font-size: 36px;
+   margin-left: 50px;
+   margin-top: 40px;
+}
+
+@media screen and (max-height: 450px) {
+.sidenav {
+   padding-top: 15px;
+}
+
+.sidenav a {
+   font-size: 18px;
+}
+.selection {
+   color: #FFFFFF;
+}
+
 .img {
-    width: 200px;
-    transition: width 0.5s ease;
+   width: 200px;
+   transition: width 0.5s ease;
 }
+
 .img:hover {
-    width: 1000px;
-    transition: width 0.5s ease;
+   width: 1000px;
+   transition: width 0.5s ease;
 }
