@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 25.0.1700.0
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32328.378
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PollinatorPathway", "PollinatorPathway\PollinatorPathway.csproj", "{EC6051C0-5BDF-48C2-8755-4F2F78B0D19C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PollinatorPathway", "PollinatorPathway\PollinatorPathway.csproj", "{EC6051C0-5BDF-48C2-8755-4F2F78B0D19C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PollinatorPathway.Tests", "PollinatorPathway.Tests\PollinatorPathway.Tests.csproj", "{8D137CBD-51DA-4966-8918-2690576C316E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{EC6051C0-5BDF-48C2-8755-4F2F78B0D19C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EC6051C0-5BDF-48C2-8755-4F2F78B0D19C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EC6051C0-5BDF-48C2-8755-4F2F78B0D19C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D137CBD-51DA-4966-8918-2690576C316E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D137CBD-51DA-4966-8918-2690576C316E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D137CBD-51DA-4966-8918-2690576C316E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D137CBD-51DA-4966-8918-2690576C316E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
