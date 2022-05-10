@@ -33,7 +33,7 @@
                 @user.Phone
             </td>
           <td class="rightedge">
-                  @Html.ActionLink("Remove", "DeleteProfile", new { id = @user.Id }, new { onclick = "return confirm('Are sure wants to delete?');" }) |
+                  @Html.ActionLink("Remove", "DeleteProfile", new { id = @user.Id }, new { onclick = "return confirm('Are you sure you want to delete?');" }) |
                 <a asp-action="UpdateProfile" asp-controller="Home"  asp-route-id="@user.Id">Update</a>
             </td>
            

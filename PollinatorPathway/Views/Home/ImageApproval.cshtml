@@ -38,7 +38,7 @@
           <td class="rightedge">
                    <a asp-action="ApproveImage" asp-controller="Home"
                    asp-route-id="@image.Id">Approve</a>| 
-                      @Html.ActionLink("Remove", "RemoveImage", new { id = @image.Id }, new { onclick = "return confirm('Are sure wants to delete?');" }) 
+                      @Html.ActionLink("Remove", "RemoveImage", new { id = @image.Id }, new { onclick = "return confirm('Are you sure you want to delete?');" }) 
                 
 
             </td>
