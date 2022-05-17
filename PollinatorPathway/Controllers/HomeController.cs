@@ -52,7 +52,19 @@ public class HomeController : Controller
                 LastName = userProVM.LastName,
                 EmailAddress = userProVM.EmailAddress,
                 Password = userProVM.Password,
-                Phone = userProVM.Phone
+                Phone = userProVM.Phone,
+                TeamContact = userProVM.TeamContact,
+                DateJoined = userProVM.DateJoined,
+                OrganizationName = userProVM.OrganizationName,
+                OrganizationEmail = userProVM.OrganizationEmail,
+                OrganizationType = userProVM.OrganizationType,
+                Address = userProVM.Address,
+                GPS = userProVM.GPS,
+                PlantName = userProVM.PlantName,
+                PlantDesc = userProVM.PlantDesc,
+                Image1 = userProVM.Image1,
+                Image2 = userProVM.Image2,
+                Image3 = userProVM.Image3
 
             };
            
@@ -81,7 +93,19 @@ public class HomeController : Controller
                 LastName = userProVM.LastName,
                 EmailAddress = userProVM.EmailAddress,
                 Password = userProVM.Password,
-                Phone = userProVM.Phone
+                Phone = userProVM.Phone,
+                TeamContact = userProVM.TeamContact,
+                DateJoined = userProVM.DateJoined,
+                OrganizationName = userProVM.OrganizationName,
+                OrganizationEmail = userProVM.OrganizationEmail,
+                OrganizationType = userProVM.OrganizationType,
+                Address = userProVM.Address,
+                GPS = userProVM.GPS,
+                PlantName = userProVM.PlantName,
+                PlantDesc = userProVM.PlantDesc,
+                Image1 = userProVM.Image1,
+                Image2 = userProVM.Image2,
+                Image3 = userProVM.Image3
 
             };
 

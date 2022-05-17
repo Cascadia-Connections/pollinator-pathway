@@ -11,6 +11,7 @@
     <div class="col-md-4">
        <form asp-action="CreateProfile" asp-controller="Home">
             <h2>Create a new Profile.</h2>
+            <h3>Personal Information</h3>
             <hr />
              <div asp-validation-summary="ModelOnly" class="text-danger"></div>
               <div class="form-floating">
@@ -35,6 +36,16 @@
                 <span asp-validation-for="@Model.Phone" class="text-danger"></span>
             </div>
             <div class="form-floating">
+                <input asp-for="@Model.TeamContact" class="form-control" autocomplete="firstname" aria-required="true" />
+                <label asp-for="@Model.TeamContact"></label>
+                <span asp-validation-for="@Model.TeamContact" class="text-danger"></span>
+            </div>
+            <div class="form-floating">
+                <input asp-for="@Model.DateJoined" class="form-control" autocomplete="date" aria-required="true" />
+                <label asp-for="@Model.DateJoined"></label>
+                <span asp-validation-for="@Model.DateJoined" class="text-danger"></span>
+            </div>
+            <div class="form-floating">
                 <input asp-for="@Model.Password" class="form-control" autocomplete="new-password" aria-required="true" />
                 <label asp-for="@Model.Password"></label>
                 <span asp-validation-for="@Model.Password" class="text-danger"></span>
@@ -43,6 +54,63 @@
                 <input asp-for="@Model.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" />
                 <label asp-for="@Model.ConfirmPassword"></label>
                 <span asp-validation-for="@Model.ConfirmPassword" class="text-danger"></span>
+            </div>
+
+            <h3>Optional Information</h3>
+            <div class="form-floating">
+                <input asp-for="@Model.OrganizationName" class="form-control" aria-required="false" />
+                <label asp-for="@Model.OrganizationName"></label>
+                <span asp-validation-for="@Model.OrganizationName" class="text-danger"></span>
+            </div>
+            <div class="form-floating">
+                <input asp-for="@Model.OrganizationType" class="form-control" aria-required="false" />
+                <label asp-for="@Model.OrganizationType"></label>
+                <span asp-validation-for="@Model.OrganizationType" class="text-danger"></span>
+            </div>
+            <div class="form-floating">
+                <input asp-for="@Model.OrganizationEmail" class="form-control" aria-required="false" />
+                <label asp-for="@Model.OrganizationEmail"></label>
+                <span asp-validation-for="@Model.OrganizationEmail" class="text-danger"></span>
+            </div>
+            
+            <h3>Plant Information</h3>
+            <hr />
+             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+              <div class="form-floating">
+                <input asp-for="@Model.Address" class="form-control" autocomplete="address" aria-required="true" />
+                <label asp-for="@Model.Address"></label>
+                <span asp-validation-for="@Model.Address" class="text-danger"></span>
+            </div>
+              <div class="form-floating">
+                <input asp-for="@Model.GPS" class="form-control" aria-required="true" />
+                <label asp-for="@Model.GPS"></label>
+                <span asp-validation-for="@Model.GPS" class="text-danger"></span>
+            </div>
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-floating">
+                <input asp-for="@Model.PlantName" class="form-control" aria-required="true" />
+                <label asp-for="@Model.PlantName"></label>
+                <span asp-validation-for="@Model.PlantName" class="text-danger"></span>
+            </div>
+             <div class="form-floating">
+                <input asp-for="@Model.PlantDesc" class="form-control" aria-required="true" />
+                <label asp-for="@Model.PlantDesc"></label>
+                <span asp-validation-for="@Model.PlantDesc" class="text-danger"></span>
+            </div>
+            <div class="form-floating">
+                <input asp-for="@Model.Image1" class="form-control" autocomplete="firstname" aria-required="false" />
+                <label asp-for="@Model.Image1"></label>
+                <span asp-validation-for="@Model.Image1" class="text-danger"></span>
+            </div>
+            <div class="form-floating">
+                <input asp-for="@Model.Image2" class="form-control" autocomplete="firstname" aria-required="false" />
+                <label asp-for="@Model.Image2"></label>
+                <span asp-validation-for="@Model.Image2" class="text-danger"></span>
+            </div>
+            <div class="form-floating">
+                <input asp-for="@Model.Image3" class="form-control" autocomplete="new-password" aria-required="false" />
+                <label asp-for="@Model.Image3"></label>
+                <span asp-validation-for="@Model.Image3" class="text-danger"></span>
             </div>
             <input type="submit" class="w-100 btn btn-lg btn-primary" value="Submit" />
           
