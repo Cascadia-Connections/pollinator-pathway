@@ -14,7 +14,18 @@
         <th>Last Name</th>
         <th>Email Address</th>
         <th>Phone</th>
-        <th>Action</th>
+        <th>Team Contact</th>
+        <th>Date Joined</th>
+        <th>Organization Name</th>
+        <th>Organization Email</th>
+        <th>Organization Type</th>
+        <th>Address</th>
+        <th>GPS</th>
+        <th>Plant Name</th>
+        <th>Plant Description</th>
+        <th>Image 1</th>
+        <th>Image 2</th>
+        <th>Image 3</th>
     </tr>
 
     @foreach (var user in Model)
@@ -26,11 +37,47 @@
             <td>
                 @user.LastName
             </td>
-             <td>
+            <td>
                 @user.EmailAddress
             </td>
-              <td>
+            <td>
                 @user.Phone
+            </td>
+            <td>
+                @user.TeamContact
+            </td>
+            <td>
+                @user.DateJoined
+            </td>
+            <td>
+                @user.OrganizationName
+            </td>
+            <td>
+                @user.OrganizationEmail
+            </td>
+            <td>
+                @user.OrganizationType
+            </td>
+            <td>
+                @user.Address
+            </td>
+            <td>
+                @user.GPS
+            </td>
+            <td>
+                @user.PlantName
+            </td>
+            <td>
+                @user.PlantDesc
+            </td>
+            <td>
+                @user.Image1
+            </td>
+            <td>
+                @user.Image2
+            </td>
+            <td>
+                @user.Image3
             </td>
           <td class="rightedge">
                   @Html.ActionLink("Remove", "DeleteProfile", new { id = @user.Id }, new { onclick = "return confirm('Are you sure you want to delete?');" }) |
