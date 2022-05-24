@@ -24,36 +24,9 @@ namespace PollinatorPathway.Controllers
             _webHost = webHost;
             _appDbContext = appDbContext;
         }
-        //[HttpPost]
-        //[Route("upload")]
-        //public async Task<string> Upload([FromForm] UploadedImage obj){
-        //    if(obj.File.Length > 0)
-        //    {
-        //        try
-        //        {
-        //            if(!Directory.Exists(_webHost.WebRootPath + "\\Images\\"))
-        //            {
-        //                Directory.CreateDirectory(_webHost.WebRootPath + "\\Images\\");
-        //            }
-        //            using (FileStream filestream = System.IO.File.Create(_webHost.WebRootPath + "\\Images\\" + obj.File.FileName))
-        //            {
-        //                obj.File.CopyTo(filestream);
-        //                filestream.Flush();
-        //                return "\\Images\\" + obj.File.FileName;
-        //            }
-        //        }
-        //        catch (Exception)
-        //        {
-        //            throw;
-        //        }
-        //    }
-        //    else
-        //    {
-        //        return "Upload Failed";
-        //    }
-        //}
+       
         [HttpPost]
-        public IActionResult Post(IFormFile img)
+        public IActionResult Post(IFormFile img,long id)
         {
             if (ModelState.IsValid)
             {
@@ -68,11 +41,19 @@ namespace PollinatorPathway.Controllers
                     // set the byte array 
                     UploadedImage.File = ms.ToArray();
                     UploadedImage.Name = img.FileName;
+                    UploadedImage.Uploader = _appDbContext.UserProfiles.FirstOrDefault(p => p.Id == id);
 
                 }
-                _appDbContext.UploadedImages.Add(UploadedImage);
-                _appDbContext.SaveChanges();
-                return Ok();
+                if (UploadedImage.Uploader != null)
+                {
+                    _appDbContext.UploadedImages.Add(UploadedImage);
+                    _appDbContext.SaveChanges();
+                    return Ok();
+                }
+                else
+                {
+                    return BadRequest("The uploader Id do not exist.");
+                }
             }
             else
             {

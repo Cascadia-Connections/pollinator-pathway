@@ -32,7 +32,59 @@ public class HomeController : Controller
        
         return View(user);
     }
-    
+    [HttpGet]
+    public IActionResult AdminList()
+    {
+        var userId = _manager.GetUserId(HttpContext.User);
+        IEnumerable<PollinatorPathwayUser> admins = _identityDbContext.Users;
+
+        return View(admins);
+    }
+    [HttpGet]
+    public IActionResult DeleteAdmin(string id)
+    {
+        _identityDbContext.Remove(new PollinatorPathwayUser { Id = id.ToString() });
+        _identityDbContext.SaveChanges();
+        return RedirectToAction("c");
+    }
+    [HttpGet]
+    public IActionResult UpdateAdmin(string id)
+    {
+        var admin = _identityDbContext.Users.FirstOrDefault(u => u.Id == id);
+        AdminViewModel adminVM = new AdminViewModel
+        {
+            AdminId = id,
+            FirstName = admin.FirstName,
+            LastName = admin.LastName,
+            EmailAddress = admin.Email,
+            Phone = admin.PhoneNumber
+        };
+
+        return View("UpdateAdmin", adminVM);
+
+    }
+    [HttpPost]
+    public IActionResult UpdateAdmin(AdminViewModel adminVM,string id)
+    {
+
+        PollinatorPathwayUser admin = new PollinatorPathwayUser
+        {
+            Id = id,
+            FirstName = adminVM.FirstName,
+            LastName = adminVM.LastName,
+            Email = adminVM.EmailAddress,
+            PhoneNumber = adminVM.Phone
+
+        };
+
+        _identityDbContext.Update(admin);
+        _appDbContext.SaveChanges();
+
+
+        return RedirectToAction("AdminList");
+
+    }
+
     [HttpGet]
     public IActionResult CreateProfile()
     {

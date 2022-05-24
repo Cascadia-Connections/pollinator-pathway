@@ -1,0 +1,45 @@
+﻿@model IEnumerable<PollinatorPathway.Areas.Identity.Data.PollinatorPathwayUser>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewBag.Title = "Admin Search";
+    Layout = "_Layout";
+}
+
+<h3>Admins List </h3>
+
+
+<table class="table">
+    <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email Address</th>
+        <th>Phone</th>
+    </tr>
+
+    @foreach (var admin in Model)
+    {
+        <tr>
+            <td>
+                @admin.FirstName
+            </td>
+            <td>
+                @admin.LastName
+            </td>
+            <td>
+                @admin.Email
+            </td>
+            <td>
+                @admin.PhoneNumber
+            </td>
+         
+          <td class="rightedge">
+                  @Html.ActionLink("Remove", "DeleteAdmin", new { id = @admin.Id }, new { onclick = "return confirm('Are you sure you want to delete " + @admin.FirstName+"?');" }) |
+                <a asp-action="UpdateProfile" asp-controller="Home"  asp-route-id="@admin.Id">Update</a>
+            </td>
+           
+           
+        </tr>
+    }
+
+</table>
+
