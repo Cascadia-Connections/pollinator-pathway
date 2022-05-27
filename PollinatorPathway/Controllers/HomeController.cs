@@ -81,6 +81,8 @@ public class HomeController : Controller
         IEnumerable<UserProfile> users = _appDbContext.UserProfiles;
         return View("UsersList",users);
     }
+
+    
     [HttpPost]
     public IActionResult UpdateProfile(ProfileViewModel userProVM,long Id)
     {

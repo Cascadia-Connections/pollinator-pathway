@@ -6,7 +6,12 @@
 }
 
 <h3>User Profiles </h3>
-
+<form asp-controller="Home" asp-action="SearchForProfileByFirstName">
+    <p>
+        <input type="text" name="fName" />
+        <input type="submit" value="Search" />
+    </p>
+</form>
 
 <table class="table">
     <tr>
