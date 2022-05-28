@@ -81,7 +81,12 @@ public class HomeController : Controller
         IEnumerable<UserProfile> users = _appDbContext.UserProfiles;
         return View("UsersList",users);
     }
-
+    [HttpPost]
+    public IActionResult SearchForProfileByFirstName(string fName)
+    {
+        IEnumerable<UserProfile> users = _appDbContext.UserProfiles.Where(u => u.FirstName.StartsWith(fName));
+        return View("UsersList", users);
+    }
     
     [HttpPost]
     public IActionResult UpdateProfile(ProfileViewModel userProVM,long Id)
