@@ -8,11 +8,11 @@
 <h3>User Profiles </h3>
 <form asp-controller="Home" asp-action="SearchForProfileByFirstName">
     <p>
-        <input type="text" name="fName" />
-        <input type="submit" value="Search" />
+        <input type="text" class="form-control" name="fName" />
+        <input type="submit"  value="Search" />
     </p>
 </form>
-
+      
 <table class="table">
     <tr>
         <th>First Name</th>
@@ -95,3 +95,5 @@
 
 </table>
 
+<input  type="button" onclick="location.href='@Url.Action("GetUsers", "Home")'"value="ReSet"/>
+  
