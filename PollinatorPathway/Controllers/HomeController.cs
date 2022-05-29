@@ -96,11 +96,11 @@ public class HomeController : Controller
     [HttpPost]
     public IActionResult UpdateProfile(ProfileViewModel userProVM,long Id)
     {
-
-        
+        if (ModelState.IsValid)
+        {
             UserProfile up = new UserProfile
             {
-                Id=Id,
+                Id = Id,
                 FirstName = userProVM.FirstName,
                 LastName = userProVM.LastName,
                 EmailAddress = userProVM.EmailAddress,
@@ -124,9 +124,15 @@ public class HomeController : Controller
 
             _appDbContext.Update(up);
             _appDbContext.SaveChanges();
-        
 
-        return RedirectToAction("getUsers");
+
+            return RedirectToAction("getUsers");
+        }
+        else
+        {
+            return RedirectToAction("UpdateProfile", new { id = userProVM.UserId });
+        }
+        
     }
     [HttpGet]
     public IActionResult UpdateProfile(long id)
