@@ -15,22 +15,22 @@
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
 
         <div>
-            <input  class = "button" type="button" onclick="location.href='@Url.Action("CreateProfile", "Home")'"  value="Create Profile"/>
+            <input  class = "button" type="button" onclick="location.href='@Url.Action("CreateProfile", "Home")'"  value="Create User Profile"/>
+        </div>
+        <div>
+             <input class = "button" type="button" onclick="location.href='@Url.Action("getUsers", "Home")'" value="Search User Profiles"/>
         </div>
          <div>
-             <a asp-area="Identity" asp-page="/Account/Register">Create Account</a>
+             <a asp-area="Identity" asp-page="/Account/Register">Create Admin Account</a>
         </div>
          <div>
              <input class = "button" type="button" onclick="location.href='@Url.Action("ImageApproval", "Home")'"value="Approve Content"/>
-        </div>
-         <div>
-             <input class = "button" type="button" onclick="location.href='@Url.Action("getUsers", "Home")'" value="Search User Base"/>
         </div>
 
     </div>
     <script>
         function openNav() {
-          document.getElementById("mySidenav").style.width = "250px";
+          document.getElementById("mySidenav").style.width = "300px";
         }
 
         function closeNav() {
