@@ -4,7 +4,7 @@
     ViewBag.Title = "Admin Search";
     Layout = "_Layout";
 }
-
+<div class = "tables">
 <h3>User Profiles </h3>
 <form asp-controller="Home" asp-action="SearchForProfileByFirstName">
     <p>
@@ -13,7 +13,7 @@
     </p>
 </form>
       
-<table class="table">
+<table id="table">
     <tr>
         <th>First Name</th>
         <th>Last Name</th>
@@ -99,5 +99,5 @@
 
 </table>
 
-<input  type="button" onclick="location.href='@Url.Action("GetUsers", "Home")'"value="ReSet"/>
-  
+<input  type="button" onclick="location.href='@Url.Action("GetUsers", "Home")'"value="Reset"/>
+</div>  

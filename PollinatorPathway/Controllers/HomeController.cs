@@ -139,7 +139,20 @@ public class HomeController : Controller
             LastName = user.LastName,
             EmailAddress = user.EmailAddress,
             Phone = user.Phone,
-            Password = user.Password
+            Password = user.Password,
+            TeamContact = user.TeamContact,
+            DateJoined = user.DateJoined,
+            OrganizationName = user.OrganizationName,
+            OrganizationEmail = user.OrganizationEmail,
+            OrganizationType = user.OrganizationType,
+            IsPrivate = user.IsPrivate,
+            Address = user.Address,
+            GPS = user.GPS,
+            PlantName = user.PlantName,
+            PlantDesc = user.PlantDesc,
+            Image1 = user.Image1,
+            Image2 = user.Image2,
+            Image3 = user.Image3
         };
 
         return View("UpdateProfile", profileVM);
