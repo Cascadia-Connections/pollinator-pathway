@@ -94,3 +94,7 @@ input[type=button] {
    width: 1000px;
    transition: width 0.8s ease;
 }
+div.container #table{
+    margin-left: 40px !important;
+    margin-right: 0 !important;
+}

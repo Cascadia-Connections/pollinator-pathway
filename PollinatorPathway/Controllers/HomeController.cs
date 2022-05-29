@@ -58,6 +58,7 @@ public class HomeController : Controller
                 OrganizationName = userProVM.OrganizationName,
                 OrganizationEmail = userProVM.OrganizationEmail,
                 OrganizationType = userProVM.OrganizationType,
+                IsPrivate = userProVM.IsPrivate,
                 Address = userProVM.Address,
                 GPS = userProVM.GPS,
                 PlantName = userProVM.PlantName,
@@ -70,6 +71,10 @@ public class HomeController : Controller
            
            _appDbContext.Add(up);
            _appDbContext.SaveChanges();
+        }
+        else
+        {
+            return RedirectToAction("CreateProfile", new { id = userProVM.UserId });
         }
 
             return RedirectToAction("AdminPortal");
@@ -99,6 +104,7 @@ public class HomeController : Controller
                 OrganizationName = userProVM.OrganizationName,
                 OrganizationEmail = userProVM.OrganizationEmail,
                 OrganizationType = userProVM.OrganizationType,
+                IsPrivate = userProVM.IsPrivate,
                 Address = userProVM.Address,
                 GPS = userProVM.GPS,
                 PlantName = userProVM.PlantName,

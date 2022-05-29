@@ -10,7 +10,7 @@
 <div class="row">
     <div class="col-md-4">
        <form asp-action="CreateProfile" asp-controller="Home">
-            <h2>Create a new Profile.</h2>
+            <h2>Create a new Profile</h2>
             <h3>Personal Information</h3>
             <hr />
              <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -73,7 +73,17 @@
                 <span asp-validation-for="@Model.OrganizationEmail" class="text-danger"></span>
             </div>
             
-            <h3>Plant Information</h3>
+            <h3>Planting Information</h3>
+            <h4>Is your planting public or private?</h4>
+             <div>
+                <label>Program</label>
+                <select asp-for="IsPrivate">
+                    <option selected disabled>Please select your planting preference</option>
+                    <option>Public</option>
+                    <option>Private</option>
+                </select>
+                <span asp-validation-for="IsPrivate" class="Validation"></span>
+            </div>
             <hr />
              <div asp-validation-summary="ModelOnly" class="text-danger"></div>
               <div class="form-floating">

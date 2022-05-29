@@ -1,5 +1,7 @@
 ﻿
 
+using System.ComponentModel.DataAnnotations;
+
 namespace PollinatorPathway.Model
 {
     public class UserProfile
@@ -22,6 +24,7 @@ namespace PollinatorPathway.Model
         public string? WebsiteLink { get; set; }
         public string? SocialMedia { get; set; }
 
+        public string? IsPrivate { get; set; }
         public string? Address { get; set; }
         public string? GPS { get; set; }
         public string? PlantName { get; set; }
