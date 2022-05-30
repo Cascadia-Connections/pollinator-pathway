@@ -32,7 +32,68 @@ public class HomeController : Controller
        
         return View(user);
     }
+    [HttpGet]
+    public IActionResult AdminList()
+    {
+        IEnumerable<PollinatorPathwayUser> admins = _identityDbContext.Users;
+        return View(admins);
+    }
+   
+    [HttpGet]
+    public async Task<IActionResult> DeleteAdmin(string id)
+    {
+        PollinatorPathwayUser user = await _manager.FindByIdAsync(id);
+        if (user != null)
+        {
+            IdentityResult result = await _manager.DeleteAsync(user);
+            return RedirectToAction("AdminList");
+           
+        }
+        else
+            ModelState.AddModelError("", "User Not Found");
+        return View("Index", _manager.Users);
+    }
     
+    [HttpGet]
+    public async Task<IActionResult> UpdateAdmin(string id)
+    {
+        PollinatorPathwayUser user = await _manager.FindByIdAsync(id);
+
+        AdminViewModel adminVM = new AdminViewModel
+        {
+            AdminId = user.Id,
+            FirstName = user.FirstName,
+            LastName = user.LastName,
+            Phone = user.PhoneNumber,
+            EmailAddress = user.Email
+        };
+        return View(adminVM);
+     
+
+    }
+    [HttpPost]
+    public async Task<IActionResult> UpdateAdmin(AdminViewModel adminVM)
+    {
+        PollinatorPathwayUser user = await _manager.FindByEmailAsync(adminVM.EmailAddress);
+        
+            if (!string.IsNullOrEmpty(adminVM.FirstName))
+                user.FirstName = adminVM.FirstName;
+           if (!string.IsNullOrEmpty(adminVM.LastName))
+                user.LastName = adminVM.LastName;
+            if (!string.IsNullOrEmpty(adminVM.EmailAddress))
+                user.Email = adminVM.EmailAddress;
+            if (!string.IsNullOrEmpty(adminVM.Phone))
+                user.PhoneNumber = adminVM.Phone; ModelState.AddModelError("", "Phone number cannot be empty");
+         
+        var result = await _manager.UpdateAsync(user);
+            if (result.Succeeded)
+                return RedirectToAction("AdminList");
+            else
+                return Error();
+       
+
+    }
+
     [HttpGet]
     public IActionResult CreateProfile()
     {
