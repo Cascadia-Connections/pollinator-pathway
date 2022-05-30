@@ -4,7 +4,7 @@
     ViewBag.Title = "Admin Search";
     Layout = "_Layout";
 }
-
+<div class = "tables">
 <h3>User Profiles </h3>
 <form asp-controller="Home" asp-action="SearchForProfileByFirstName">
     <p>
@@ -13,7 +13,7 @@
     </p>
 </form>
       
-<table class="table">
+<table id="table">
     <tr>
         <th>First Name</th>
         <th>Last Name</th>
@@ -24,10 +24,11 @@
         <th>Organization Name</th>
         <th>Organization Email</th>
         <th>Organization Type</th>
+        <th>Planting Preference</th>
         <th>Address</th>
         <th>GPS</th>
-        <th>Plant Name</th>
-        <th>Plant Description</th>
+        <th>Planting Name</th>
+        <th>Planting Description</th>
         <th>Image 1</th>
         <th>Image 2</th>
         <th>Image 3</th>
@@ -64,6 +65,9 @@
                 @user.OrganizationType
             </td>
             <td>
+                @user.IsPrivate
+            </td>
+            <td>
                 @user.Address
             </td>
             <td>
@@ -85,7 +89,7 @@
                 @user.Image3
             </td>
           <td class="rightedge">
-                  @Html.ActionLink("Remove", "DeleteProfile", new { id = @user.Id }, new { onclick = "return confirm('Are you sure you want to delete?');" }) |
+                  @Html.ActionLink("Remove", "DeleteProfile", new { id = @user.Id }, new { onclick = "return confirm('Are you sure you want to delete " + @user.FirstName+"?');" }) |
                 <a asp-action="UpdateProfile" asp-controller="Home"  asp-route-id="@user.Id">Update</a>
             </td>
            
@@ -95,5 +99,5 @@
 
 </table>
 
-<input  type="button" onclick="location.href='@Url.Action("GetUsers", "Home")'"value="ReSet"/>
-  
+<input  type="button" onclick="location.href='@Url.Action("GetUsers", "Home")'"value="Reset"/>
+</div>  

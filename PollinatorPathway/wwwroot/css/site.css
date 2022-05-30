@@ -94,3 +94,21 @@ input[type=button] {
    width: 1000px;
    transition: width 0.8s ease;
 }
+div.container {
+    margin-right: 0;
+    margin-left: 0;
+}
+.mainContent{
+    margin-left: 20vw !important;
+    width: 100%;
+}
+.tables{
+    width: 1300px;
+    margin-left: 100px;
+}
+.tables th{
+    padding-right: 20px;
+}
+.tables tr{
+    border-bottom: 1px solid #e1e1e1;
+}

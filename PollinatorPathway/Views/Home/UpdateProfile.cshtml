@@ -6,8 +6,8 @@
 
 }
 
-
-<div class="row">
+<div class = "mainContent">
+    <div class="row">
     <div class="col-md-4">
        <form asp-action="UpdateProfile" asp-controller="Home" asp-route-id="@Model.UserId">
             <h2>Update Profile.</h2>
@@ -56,6 +56,7 @@
             </div>
 
             <h3>Optional Information</h3>
+            <hr />
             <div class="form-floating">
                 <input asp-for="@Model.OrganizationName" class="form-control" aria-required="false" />
                 <label asp-for="@Model.OrganizationName"></label>
@@ -72,8 +73,17 @@
                 <span asp-validation-for="@Model.OrganizationEmail" class="text-danger"></span>
             </div>
             
+             <hr />
             <h3>Plant Information</h3>
-            <hr />
+            <div>
+                <label>*Is your planting public or private?</label>
+                <select asp-for="IsPrivate">
+                    <option selected disabled>Please select your planting preference</option>
+                    <option>Public</option>
+                    <option>Private</option>
+                </select>
+                <span asp-validation-for="IsPrivate" class="Validation"></span>
+            </div>
              <div asp-validation-summary="ModelOnly" class="text-danger"></div>
               <div class="form-floating">
                 <input asp-for="@Model.Address" class="form-control" autocomplete="address" aria-required="true" />
@@ -117,3 +127,5 @@
         </form>
     </div>
   </div>
+
+</div>

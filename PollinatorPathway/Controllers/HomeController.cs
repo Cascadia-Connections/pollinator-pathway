@@ -58,6 +58,7 @@ public class HomeController : Controller
                 OrganizationName = userProVM.OrganizationName,
                 OrganizationEmail = userProVM.OrganizationEmail,
                 OrganizationType = userProVM.OrganizationType,
+                IsPrivate = userProVM.IsPrivate,
                 Address = userProVM.Address,
                 GPS = userProVM.GPS,
                 PlantName = userProVM.PlantName,
@@ -70,6 +71,10 @@ public class HomeController : Controller
            
            _appDbContext.Add(up);
            _appDbContext.SaveChanges();
+        }
+        else
+        {
+            return RedirectToAction("CreateProfile", new { id = userProVM.UserId });
         }
 
             return RedirectToAction("AdminPortal");
@@ -91,11 +96,11 @@ public class HomeController : Controller
     [HttpPost]
     public IActionResult UpdateProfile(ProfileViewModel userProVM,long Id)
     {
-
-        
+        if (ModelState.IsValid)
+        {
             UserProfile up = new UserProfile
             {
-                Id=Id,
+                Id = Id,
                 FirstName = userProVM.FirstName,
                 LastName = userProVM.LastName,
                 EmailAddress = userProVM.EmailAddress,
@@ -106,6 +111,7 @@ public class HomeController : Controller
                 OrganizationName = userProVM.OrganizationName,
                 OrganizationEmail = userProVM.OrganizationEmail,
                 OrganizationType = userProVM.OrganizationType,
+                IsPrivate = userProVM.IsPrivate,
                 Address = userProVM.Address,
                 GPS = userProVM.GPS,
                 PlantName = userProVM.PlantName,
@@ -118,9 +124,15 @@ public class HomeController : Controller
 
             _appDbContext.Update(up);
             _appDbContext.SaveChanges();
-        
 
-        return RedirectToAction("getUsers");
+
+            return RedirectToAction("getUsers");
+        }
+        else
+        {
+            return RedirectToAction("UpdateProfile", new { id = userProVM.UserId });
+        }
+        
     }
     [HttpGet]
     public IActionResult UpdateProfile(long id)
@@ -133,7 +145,20 @@ public class HomeController : Controller
             LastName = user.LastName,
             EmailAddress = user.EmailAddress,
             Phone = user.Phone,
-            Password = user.Password
+            Password = user.Password,
+            TeamContact = user.TeamContact,
+            DateJoined = user.DateJoined,
+            OrganizationName = user.OrganizationName,
+            OrganizationEmail = user.OrganizationEmail,
+            OrganizationType = user.OrganizationType,
+            IsPrivate = user.IsPrivate,
+            Address = user.Address,
+            GPS = user.GPS,
+            PlantName = user.PlantName,
+            PlantDesc = user.PlantDesc,
+            Image1 = user.Image1,
+            Image2 = user.Image2,
+            Image3 = user.Image3
         };
 
         return View("UpdateProfile", profileVM);
