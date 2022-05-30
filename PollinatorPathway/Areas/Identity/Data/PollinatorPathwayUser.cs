@@ -11,5 +11,7 @@ public class PollinatorPathwayUser : IdentityUser
 {
     public string FirstName { get; set; }
     public string LastName { get; set; }
+
+   
 }
 

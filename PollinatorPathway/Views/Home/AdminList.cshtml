@@ -34,7 +34,7 @@
          
           <td class="rightedge">
                   @Html.ActionLink("Remove", "DeleteAdmin", new { id = @admin.Id }, new { onclick = "return confirm('Are you sure you want to delete " + @admin.FirstName+"?');" }) |
-                <a asp-action="UpdateProfile" asp-controller="Home"  asp-route-id="@admin.Id">Update</a>
+                <a asp-action="UpdateAdmin" asp-controller="Home"  asp-route-id="@admin.Id">Update</a>
             </td>
            
            

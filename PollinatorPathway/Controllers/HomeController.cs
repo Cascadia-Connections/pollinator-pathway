@@ -35,53 +35,70 @@ public class HomeController : Controller
     [HttpGet]
     public IActionResult AdminList()
     {
-        var userId = _manager.GetUserId(HttpContext.User);
         IEnumerable<PollinatorPathwayUser> admins = _identityDbContext.Users;
-
         return View(admins);
     }
+   
     [HttpGet]
-    public IActionResult DeleteAdmin(string id)
+    public async Task<IActionResult> DeleteAdmin(string id)
     {
-        _identityDbContext.Remove(new PollinatorPathwayUser { Id = id.ToString() });
-        _identityDbContext.SaveChanges();
-        return RedirectToAction("c");
+        PollinatorPathwayUser user = await _manager.FindByIdAsync(id);
+        if (user != null)
+        {
+            IdentityResult result = await _manager.DeleteAsync(user);
+            return RedirectToAction("AdminList");
+           
+        }
+        else
+            ModelState.AddModelError("", "User Not Found");
+        return View("Index", _manager.Users);
     }
+    
     [HttpGet]
-    public IActionResult UpdateAdmin(string id)
+    public async Task<IActionResult> UpdateAdmin(string id)
     {
-        var admin = _identityDbContext.Users.FirstOrDefault(u => u.Id == id);
+        PollinatorPathwayUser user = await _manager.FindByIdAsync(id);
+
         AdminViewModel adminVM = new AdminViewModel
         {
-            AdminId = id,
-            FirstName = admin.FirstName,
-            LastName = admin.LastName,
-            EmailAddress = admin.Email,
-            Phone = admin.PhoneNumber
+            AdminId = user.Id,
+            FirstName = user.FirstName,
+            LastName = user.LastName,
+            Phone = user.PhoneNumber,
+            EmailAddress = user.Email
         };
-
-        return View("UpdateAdmin", adminVM);
+        return View(adminVM);
+     
 
     }
     [HttpPost]
-    public IActionResult UpdateAdmin(AdminViewModel adminVM,string id)
+    public async Task<IActionResult> UpdateAdmin(AdminViewModel adminVM,string id)
     {
+        PollinatorPathwayUser user = await _manager.FindByIdAsync(id);
+        
+            if (!string.IsNullOrEmpty(adminVM.FirstName))
+                user.FirstName = adminVM.FirstName;
+            else
+                ModelState.AddModelError("", "First Name cannot be empty");
+            if (!string.IsNullOrEmpty(adminVM.LastName))
+                user.LastName = adminVM.LastName;
+            else
+                ModelState.AddModelError("", "Last Name cannot be empty");
+            if (!string.IsNullOrEmpty(adminVM.EmailAddress))
+                user.Email = adminVM.EmailAddress;
+            else
+                ModelState.AddModelError("", "Email cannot be empty");
 
-        PollinatorPathwayUser admin = new PollinatorPathwayUser
-        {
-            Id = id,
-            FirstName = adminVM.FirstName,
-            LastName = adminVM.LastName,
-            Email = adminVM.EmailAddress,
-            PhoneNumber = adminVM.Phone
+            if (!string.IsNullOrEmpty(adminVM.Phone))
+                user.PhoneNumber = adminVM.Phone;
+            else
+                ModelState.AddModelError("", "Phone number cannot be empty");
 
-        };
-
-        _identityDbContext.Update(admin);
-        _appDbContext.SaveChanges();
-
-
-        return RedirectToAction("AdminList");
+             var result = await _manager.UpdateAsync(user);
+        if (result.Succeeded)
+            return RedirectToAction("AdminList");
+        else
+            Error();
 
     }
 
