@@ -72,33 +72,25 @@ public class HomeController : Controller
 
     }
     [HttpPost]
-    public async Task<IActionResult> UpdateAdmin(AdminViewModel adminVM,string id)
+    public async Task<IActionResult> UpdateAdmin(AdminViewModel adminVM)
     {
-        PollinatorPathwayUser user = await _manager.FindByIdAsync(id);
+        PollinatorPathwayUser user = await _manager.FindByEmailAsync(adminVM.EmailAddress);
         
             if (!string.IsNullOrEmpty(adminVM.FirstName))
                 user.FirstName = adminVM.FirstName;
-            else
-                ModelState.AddModelError("", "First Name cannot be empty");
-            if (!string.IsNullOrEmpty(adminVM.LastName))
+           if (!string.IsNullOrEmpty(adminVM.LastName))
                 user.LastName = adminVM.LastName;
-            else
-                ModelState.AddModelError("", "Last Name cannot be empty");
             if (!string.IsNullOrEmpty(adminVM.EmailAddress))
                 user.Email = adminVM.EmailAddress;
-            else
-                ModelState.AddModelError("", "Email cannot be empty");
-
             if (!string.IsNullOrEmpty(adminVM.Phone))
-                user.PhoneNumber = adminVM.Phone;
+                user.PhoneNumber = adminVM.Phone; ModelState.AddModelError("", "Phone number cannot be empty");
+         
+        var result = await _manager.UpdateAsync(user);
+            if (result.Succeeded)
+                return RedirectToAction("AdminList");
             else
-                ModelState.AddModelError("", "Phone number cannot be empty");
-
-             var result = await _manager.UpdateAsync(user);
-        if (result.Succeeded)
-            return RedirectToAction("AdminList");
-        else
-            Error();
+                return Error();
+       
 
     }
 
