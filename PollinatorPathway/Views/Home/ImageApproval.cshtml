@@ -4,8 +4,8 @@
     ViewBag.Title = "Admin Search";
     Layout = "_Layout";
 }
-
-<h3>Approve User Uploaded Content</h3>
+<div class = "mainContent">
+    <h3>Approve User Uploaded Content</h3>
 
 
 <table class="table">
@@ -30,21 +30,15 @@
                   var base64 = Convert.ToBase64String(@image.File);
                   var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
                  }
-
               <img src="@imgSrc" class = "img"/>
               <!-- onclick="enlargeImg()" id="img" width = 200 -->
             </td>
-             
           <td class="rightedge">
                    <a asp-action="ApproveImage" asp-controller="Home"
                    asp-route-id="@image.Id">Approve</a>| 
                       @Html.ActionLink("Remove", "RemoveImage", new { id = @image.Id }, new { onclick = "return confirm('Are you sure you want to delete?');" }) 
-                
-
             </td>
-           
-           
         </tr>
     }
-
 </table>
+</div>
