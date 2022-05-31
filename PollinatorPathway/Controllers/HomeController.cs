@@ -157,43 +157,36 @@ public class HomeController : Controller
     [HttpPost]
     public IActionResult UpdateProfile(ProfileViewModel userProVM,long Id)
     {
-        if (ModelState.IsValid)
+        UserProfile up = new UserProfile
         {
-            UserProfile up = new UserProfile
-            {
-                Id = Id,
-                FirstName = userProVM.FirstName,
-                LastName = userProVM.LastName,
-                EmailAddress = userProVM.EmailAddress,
-                Password = userProVM.Password,
-                Phone = userProVM.Phone,
-                TeamContact = userProVM.TeamContact,
-                DateJoined = userProVM.DateJoined,
-                OrganizationName = userProVM.OrganizationName,
-                OrganizationEmail = userProVM.OrganizationEmail,
-                OrganizationType = userProVM.OrganizationType,
-                IsPrivate = userProVM.IsPrivate,
-                Address = userProVM.Address,
-                GPS = userProVM.GPS,
-                PlantName = userProVM.PlantName,
-                PlantDesc = userProVM.PlantDesc,
-                Image1 = userProVM.Image1,
-                Image2 = userProVM.Image2,
-                Image3 = userProVM.Image3
+            Id = Id,
+            FirstName = userProVM.FirstName,
+            LastName = userProVM.LastName,
+            EmailAddress = userProVM.EmailAddress,
+            Password = userProVM.Password,
+            Phone = userProVM.Phone,
+            TeamContact = userProVM.TeamContact,
+            DateJoined = userProVM.DateJoined,
+            OrganizationName = userProVM.OrganizationName,
+            OrganizationEmail = userProVM.OrganizationEmail,
+            OrganizationType = userProVM.OrganizationType,
+            IsPrivate = userProVM.IsPrivate,
+            Address = userProVM.Address,
+            GPS = userProVM.GPS,
+            PlantName = userProVM.PlantName,
+            PlantDesc = userProVM.PlantDesc,
+            Image1 = userProVM.Image1,
+            Image2 = userProVM.Image2,
+            Image3 = userProVM.Image3
 
-            };
+        };
 
-            _appDbContext.Update(up);
-            _appDbContext.SaveChanges();
+        _appDbContext.Update(up);
+        _appDbContext.SaveChanges();
 
 
-            return RedirectToAction("getUsers");
-        }
-        else
-        {
-            return RedirectToAction("UpdateProfile", new { id = userProVM.UserId });
-        }
-        
+        return RedirectToAction("getUsers");
+
     }
     [HttpGet]
     public IActionResult UpdateProfile(long id)
