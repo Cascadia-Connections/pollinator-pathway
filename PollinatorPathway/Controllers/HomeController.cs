@@ -150,10 +150,27 @@ public class HomeController : Controller
     [HttpPost]
     public IActionResult SearchForProfileByFirstName(string fName)
     {
+        string number = Request.Form["number"];
+
         IEnumerable<UserProfile> users = _appDbContext.UserProfiles.Where(u => u.FirstName.StartsWith(fName));
         return View("UsersList", users);
     }
-    
+    [HttpPost]
+    public IActionResult SearchForAdminBy(string searchValue)
+    {
+        string seachType = Request.Form["searchType"];
+        IEnumerable<PollinatorPathwayUser> admins = (IEnumerable<PollinatorPathwayUser>)_manager.Users;
+        switch (seachType)
+        {
+            case "LastName": admins = admins.Where(u => u.LastName.StartsWith(searchValue));
+                break;
+            case "Email": admins = admins.Where(u => u.Email.Equals(searchValue));
+                break;
+
+        }
+        return View("AdminList", admins);
+    }
+
     [HttpPost]
     public IActionResult UpdateProfile(ProfileViewModel userProVM,long Id)
     {

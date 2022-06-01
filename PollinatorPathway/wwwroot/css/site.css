@@ -119,3 +119,26 @@ div.container {
 .tables tr{
     border-bottom: 1px solid #e1e1e1;
 }
+
+
+searchField {
+    display: inline-block;
+    float: left;
+    height: 25px;
+}
+
+.searchType {
+    height: 25px;
+}
+
+.searchButton {
+    background-color: #FFCC99;
+    border: 1px solid yellow;
+    width: 60px;
+    font-family: bold;
+    height: 25px;
+    cursor: pointer;
+    background-color: #90BF49;
+    border: #90BF49;
+}
+

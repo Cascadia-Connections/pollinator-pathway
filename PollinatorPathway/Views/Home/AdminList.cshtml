@@ -5,10 +5,20 @@
     Layout = "_Layout";
 }
 
-<h3>Admins List </h3>
-
-
-<table class="table">
+<div class = "tables">
+ 
+<form asp-controller="Home" asp-action="SearchForAdminBy">
+    <p>
+          <input type="text" class="searchField" name="searchValue" />
+        <select class="searchType" id="searchType">
+          <option value="LastName">Last Name</option>
+          <option value="Email">Email</option>
+        </select>
+        <input type="submit" class="searchButton" value="Search" />
+    </p>
+</form>
+  
+<table id="table">
     <tr>
         <th>First Name</th>
         <th>Last Name</th>
@@ -42,4 +52,8 @@
     }
 
 </table>
+
+<input  type="button" onclick="location.href='@Url.Action("AdminList", "Home")'"value="Reset"/>
+
+</div>
 
