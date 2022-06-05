@@ -8,7 +8,7 @@
 <h3>User Profiles </h3>
 <form asp-controller="Home" asp-action="SearchForProfileByFirstName">
     <p>
-        <input type="text" class="form-control" name="fName" />
+        <input type="text" class="form-control" name="fName" style="width:400px;"/>
         <input type="submit"  value="Search" />
     </p>
 </form>
@@ -32,6 +32,7 @@
         <th>Image 1</th>
         <th>Image 2</th>
         <th>Image 3</th>
+        <th></th>
     </tr>
 
     @foreach (var user in Model)
