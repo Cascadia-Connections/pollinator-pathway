@@ -26,7 +26,7 @@ namespace PollinatorPathway.Controllers
         }
        
         [HttpPost]
-        public IActionResult Post(IFormFile img,long id)
+        public IActionResult Post(IFormFile img, [FromQuery]long id)
         {
             if (ModelState.IsValid)
             {
