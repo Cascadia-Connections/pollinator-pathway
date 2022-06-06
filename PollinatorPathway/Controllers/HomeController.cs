@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using PollinatorPathway.Areas.Identity.Data;
 using PollinatorPathway.Data;
 using PollinatorPathway.Model;
@@ -33,57 +32,13 @@ public class HomeController : Controller
        
         return View(user);
     }
- 
     [HttpGet]
-    public async Task<IActionResult> AdminList(string sortOrder,
-     string currentFilter,
-     string searchType,
-     string searchValue,
-     int? pageNumber)
+    public IActionResult AdminList()
     {
-        ViewData["CurrentAdminSort"] = sortOrder;
-        ViewData["NameSortAdminParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
-        ViewData["DateSortAdminParm"] = sortOrder == "Date" ? "date_desc" : "Date";
-        if (searchValue != null)
-        {
-            pageNumber = 1;
-        }
-        else
-        {
-            searchValue = currentFilter;
-        }
-        ViewData["CurrentAdminFilter"] = searchValue;
-
-        IQueryable<PollinatorPathwayUser> admins = from s in _identityDbContext.Users
-                                                   select s;
-         
-            if (!String.IsNullOrEmpty(searchValue))
-            {
-                switch (searchType)
-                {
-                    case "Name":
-                        admins = admins.Where(a => a.LastName.StartsWith(searchValue) || a.FirstName.StartsWith(searchValue));
-                        break;
-                    case "Email":
-                        admins = admins.Where(a => a.Email.Equals(searchValue));
-                        break;
-
-                }
-            }
-        
-         switch (sortOrder)
-        {
-            case "name_desc":
-                admins = admins.OrderByDescending(a => a.LastName);
-                break;
-            default:
-                admins = admins.OrderBy(a => a.LastName);
-                break;
-        }
-        int pageSize = 2;
-        return View("AdminList", await PaginatedList<PollinatorPathwayUser>.CreateAsync(admins.AsNoTracking(), pageNumber ?? 1, pageSize));
-
+        IEnumerable<PollinatorPathwayUser> admins = _identityDbContext.Users;
+        return View(admins);
     }
+   
     [HttpGet]
     public async Task<IActionResult> DeleteAdmin(string id)
     {
@@ -187,52 +142,19 @@ public class HomeController : Controller
     }
 
     [HttpGet]
-    public async Task<IActionResult> getUsers(string sortOrder,
-    string currentFilter,
-    string searchString,
-    int? pageNumber)
+    public IActionResult getUsers()
     {
-        ViewData["CurrentUserSort"] = sortOrder;
-        ViewData["NameSortUserParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
-        ViewData["DateSortUserParm"] = sortOrder == "Date" ? "date_desc" : "Date";
-        if (searchString != null)
-        {
-            pageNumber = 1;
-        }
-        else
-        {
-            searchString = currentFilter;
-        }
-        ViewData["CurrentUserFilter"] = searchString;
-
-        IQueryable<UserProfile> users = from s in _appDbContext.UserProfiles
-                       select s;
-        if (!String.IsNullOrEmpty(searchString))
-        {
-            users = users.Where(s => s.LastName.StartsWith(searchString)
-                                   || s.FirstName.StartsWith(searchString));
-        }
-
-        switch (sortOrder)
-        {
-            case "name_desc":
-                users = users.OrderByDescending(s => s.LastName);
-                break;
-            case "Date":
-                users = users.OrderBy(s => s.DateJoined);
-                break;
-            case "date_desc":
-                users = users.OrderByDescending(s => s.DateJoined);
-                break;
-            default:
-                users = users.OrderBy(s => s.LastName);
-                break;
-        }
-        int pageSize = 2;
-        return View("UsersList",await PaginatedList<UserProfile>.CreateAsync(users.AsNoTracking(), pageNumber ?? 1, pageSize));
-       
+        IEnumerable<UserProfile> users = _appDbContext.UserProfiles;
+        return View("UsersList",users);
     }
-   
+    [HttpPost]
+    public IActionResult SearchForProfileByFirstName(string fName)
+    {
+        string number = Request.Form["number"];
+
+        IEnumerable<UserProfile> users = _appDbContext.UserProfiles.Where(u => u.FirstName.StartsWith(fName));
+        return View("UsersList", users);
+    }
     [HttpPost]
     public IActionResult SearchForAdminBy(string searchValue)
     {

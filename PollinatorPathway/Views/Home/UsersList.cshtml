@@ -1,4 +1,4 @@
-﻿@model PaginatedList<PollinatorPathway.Model.UserProfile>
+﻿@model IEnumerable<PollinatorPathway.Model.UserProfile>
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
     ViewBag.Title = "Admin Search";
@@ -6,36 +6,14 @@
 }
 <div class = "tables">
 <h3>User Profiles </h3>
-
-<p>
-    <a asp-controller="Home" asp-action="CreateProfile" class="link-light">Create New</a>
-</p>
-
-<form asp-action="getUsers" method="get">
-    <div class="form-actions no-color">
-        <p>
-            Find by name: <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" />
-            <input type="submit" value="Search" class="searchButton" /> |
-            <a asp-action="getUsers">Back to Full List</a>
-        </p>
-    </div>
-</form>      
+<form asp-controller="Home" asp-action="SearchForProfileByFirstName">
+    <p>
+        <input type="text" class="form-control" name="fName" />
+        <input type="submit"  value="Search" />
+    </p>
+</form>
+      
 <table id="table">
-     <thead>
-        <tr>
-                <th>
-                    <a asp-action="getUsers" asp-route-sortOrder="@ViewData["NameSortUserParm"]" asp-route-currentFilter="@ViewData["CurrentUserFilter"]">Last Name</a>
-                </th>
-                <th>
-                    First Name
-                </th>
-                <th>
-                    <a asp-action="getUsers" asp-route-sortOrder="@ViewData["DateSortUserParm"]" asp-route-currentFilter="@ViewData["CurrentUserFilter"]">Date Joined</a>
-                </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
     <tr>
         <th>First Name</th>
         <th>Last Name</th>
@@ -54,7 +32,6 @@
         <th>Image 1</th>
         <th>Image 2</th>
         <th>Image 3</th>
-        <th></th>
     </tr>
 
     @foreach (var user in Model)
@@ -122,23 +99,6 @@
 
 </table>
 
-@{
-    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
-    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
-}
+<input  type="button" onclick="location.href='@Url.Action("GetUsers", "Home")'"value="Reset"/>
 
-<a asp-action="getUsers"
-   asp-route-sortOrder="@ViewData["CurrentUserSort"]"
-   asp-route-pageNumber="@(Model.PageIndex - 1)"
-   asp-route-currentFilter="@ViewData["CurrentUserFilter"]"
-   class="btn btn-default @prevDisabled">
-    Previous
-</a>
-<a asp-action="getUsers"
-   asp-route-sortOrder="@ViewData["CurrentUserSort"]"
-   asp-route-pageNumber="@(Model.PageIndex + 1)"
-   asp-route-currentFilter="@ViewData["CurrentUserFilter"]"
-   class="btn btn-default @nextDisabled">
-    Next
-</a>
 </div>  
