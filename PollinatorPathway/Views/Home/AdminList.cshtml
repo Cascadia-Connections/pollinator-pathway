@@ -1,4 +1,4 @@
-﻿@model PaginatedList<PollinatorPathway.Areas.Identity.Data.PollinatorPathwayUser>
+﻿@model IEnumerable<PollinatorPathway.Areas.Identity.Data.PollinatorPathwayUser>
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
     ViewBag.Title = "Admin Search";
@@ -7,32 +7,16 @@
 
 <div class = "tables">
  
-<p>
-    <a asp-controller="Home" asp-action="CreateAdmin" class="link-light">Create New</a>
-</p>
-<form asp-action="AdminList" method="get">
-    <div class="form-actions no-color">
-        <p>
-            <input type="text" class="searchField" name="searchValue" />
-            <select class="searchType" name="searchType">
-              <option value="Name">First/Last Name</option>
-              <option value="Email">Email</option>
-            </select>
-            <input type="submit" value="Search" class="searchButton" /> |
-            <a asp-action="AdminList">Back to Full List</a>
-        </p>
-    </div>
-</form>
-@*<form asp-controller="Home" asp-action="SearchForAdminBy">
+<form asp-controller="Home" asp-action="SearchForAdminBy">
     <p>
-        <input type="text" class="searchField" name="searchValue" />
+          <input type="text" class="searchField" name="searchValue" />
         <select class="searchType" id="searchType">
           <option value="LastName">Last Name</option>
           <option value="Email">Email</option>
         </select>
         <input type="submit" class="searchButton" value="Search" />
     </p>
-</form>*@
+</form>
   
 <table id="table">
     <tr>
@@ -70,24 +54,7 @@
 
 </table>
 
-@{
-    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
-    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
-}
+<input  type="button" onclick="location.href='@Url.Action("AdminList", "Home")'"value="Reset"/>
 
-<a asp-action="AdminList"
-   asp-route-sortOrder="@ViewData["CurrentAdminSort"]"
-   asp-route-pageNumber="@(Model.PageIndex - 1)"
-   asp-route-currentFilter="@ViewData["CurrentAdminFilter"]"
-   class="btn btn-default @prevDisabled">
-    Previous
-</a>
-<a asp-action="AdminList"
-   asp-route-sortOrder="@ViewData["CurrentAdminSort"]"
-   asp-route-pageNumber="@(Model.PageIndex + 1)"
-   asp-route-currentFilter="@ViewData["CurrentAdminFilter"]"
-   class="btn btn-default @nextDisabled">
-    Next
-</a>
 </div>
 
