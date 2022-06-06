@@ -1,29 +1,41 @@
-﻿html {
-  font-size: 14px;
+html {
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
+}
+
+h1, h2, h3, h4, h5, h6, p, th, td {
+    font-family: 'Raleway', sans-serif;
 }
 
 body {
-  margin-bottom: 60px;
-} 
+    margin-bottom: 60px;
+}
+
 nav {
-    background-color: #188C81;
+    background-color: #D1E0FC;
     z-index: 2;
+    border-bottom: solid 3px #F6CA60;
 }
+
+    nav a, nav button {
+        font-family: 'Libre Baskerville', serif;
+    }
+
 input[type=button] {
-    background-color: #90BF49;
-    border: #90BF49;
+    background-color: #8062A3;
+    border: #8062A3;
 }
+
 .basenav {
     height: 100%;
     width: 50px;
@@ -31,10 +43,11 @@ input[type=button] {
     z-index: 1;
     top: 0;
     left: 0;
-    background-color: #90BF49;
+    background-color: #8062A3;
     overflow-x: hidden;
-    padding-top: 60px;
+    padding-top: 80px;
 }
+
 .sidenav {
     height: 100%;
     width: 0;
@@ -42,58 +55,61 @@ input[type=button] {
     z-index: 1;
     top: 0;
     left: 0;
-    background-color: #90BF49;
+    background-color: #8062A3;
     overflow-x: hidden;
     transition: 0.5s;
     padding-top: 100px;
 }
 
-.sidenav a, .button {
-   padding: 8px 8px 8px 32px;
-   text-decoration: none;
-   font-size: 25px;
-   color: #FFFFFF;
-   display: block;
-   transition: 0.3s;
-}
+    .sidenav a, .button {
+        padding: 8px 8px 8px 32px;
+        text-decoration: none;
+        font-size: 25px;
+        color: #FFFFFF;
+        display: block;
+        transition: 0.3s;
+    }
 
-.sidenav a:hover, .button:hover {
-   color: #188C81;
-}
-.sidenav a:active, .button:active {
-   color: #0a3733;
-}
+        .sidenav a:hover, .button:hover {
+            color: #D1E0FC;
+        }
 
-.sidenav .closebtn {
-   position: absolute;
-   top: 0;
-   right: 25px;
-   font-size: 36px;
-   margin-left: 50px;
-   margin-top: 40px;
-}
+        .sidenav a:active, .button:active {
+            color: #aac2ef;
+        }
+
+    .sidenav .closebtn {
+        position: absolute;
+        top: 0;
+        right: 25px;
+        font-size: 36px;
+        margin-left: 50px;
+        margin-top: 55px;
+    }
 
 @media screen and (max-height: 450px) {
     .sidenav {
         padding-top: 15px;
     }
 
-    .sidenav a {
-        font-size: 18px;
-    }
+        .sidenav a {
+            font-size: 18px;
+        }
 }
+
 .selection {
-   color: #FFFFFF;
+    color: #FFFFFF;
 }
 
 .img {
-   width: 200px;
-   transition: width 0.8s ease;
+    width: 200px;
+    transition: width 0.8s ease;
 }
-.img:hover {
-   width: 1000px;
-   transition: width 0.8s ease;
-}
+
+    .img:hover {
+        width: 1000px;
+        transition: width 0.8s ease;
+    }
 /* 
  * Always set the map height explicitly to define the size of the div element
  * that contains the map. 
@@ -101,24 +117,42 @@ input[type=button] {
 #map {
     height: 100%;
 }
+
 div.container {
     margin-right: 0;
     margin-left: 0;
 }
-.mainContent{
+
+.mainContent {
     margin-left: 20vw !important;
+    margin-top: 15px;
     width: 100%;
 }
-.tables{
-    width: 1300px;
-    margin-left: 100px;
+
+.tables {
+    width: 90vw;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
 }
-.tables th{
-    padding-right: 20px;
-}
-.tables tr{
-    border-bottom: 1px solid #e1e1e1;
-}
+
+    .tables th {
+        padding-right: 20px;
+        font-size: 1em;
+    }
+
+    .tables tr {
+        background-color: #f3f7fd;
+    }
+
+        .tables tr:nth-child(2n+1) {
+            background-color: #ebf1fd;
+        }
+
+    .tables td {
+        font-size: 1em;
+        padding-right: 10px;
+    }
 
 
 searchField {
@@ -141,4 +175,3 @@ searchField {
     background-color: #90BF49;
     border: #90BF49;
 }
-
