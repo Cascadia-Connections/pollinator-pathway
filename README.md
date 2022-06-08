@@ -4,7 +4,20 @@
 ## Customers & Stakeholders:
 - Administrators of Pollinator Pathway NW
 - Pollinator Pathway Users - Through Admins 
+## Current Features: 
+- Create user profile, upload to data base
+- Update user profiles 
+- Delete user profiles 
+- Search user profiles
+- Create admin accounts, upload to data base
+- Update admin accounts 
+- Delete admin accounts 
+- Search admin accounts 
+- API Recieve user uploaded images from mobile app (needs to be connected to mobile app, tested through Postman)
+- Approve or Reject user uploaded images
+- Google Map API with custom map icons (more features need to be added)
 ## Images and Icons used in the Web Application
+### The web application uses these image links. Please do not modify or delete these images unless you are ready to use other images as replacement, or do not need the images anymore.
 ![Icon](https://user-images.githubusercontent.com/67928730/172041007-b16b5c3e-2847-4dbf-8086-0ddc62bc34d7.png)
 ![Icon2](https://user-images.githubusercontent.com/67928730/172041077-92403997-aa07-4c54-ba08-b8c76b25d7da.png)
 
