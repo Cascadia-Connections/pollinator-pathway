@@ -20,4 +20,12 @@
 ### The web application uses these image links. Please do not modify or delete these images unless you are ready to use other images as replacement, or do not need the images anymore.
 ![Icon](https://user-images.githubusercontent.com/67928730/172041007-b16b5c3e-2847-4dbf-8086-0ddc62bc34d7.png)
 ![Icon2](https://user-images.githubusercontent.com/67928730/172041077-92403997-aa07-4c54-ba08-b8c76b25d7da.png)
+## How to run the web application:
+1. Clone the repository 
+2. Create a new working branch based on develop (up to date with latest changes)
+3. Build the Application 
+4. To see features working, add at least 3 admin accounts, user profiles, and user uploaded images.
+- How to add images
+5. The application is now ready for testing and new developement. 
 
+## For more in-detail info about Pollinator Pathway NW Admins, check out the Wiki page:
