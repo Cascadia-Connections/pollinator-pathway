@@ -17,7 +17,7 @@
 - Approve or Reject user uploaded images
 - Google Map API with custom map icons (more features need to be added)
 ## Images and Icons used in the Web Application
-### The web application uses these image links. Please do not modify or delete these images unless you are ready to use other images as replacement, or do not need the images anymore.
+#### The web application uses these image links. Please do not modify or delete these images unless you are ready to use other images as replacement, or do not need the images anymore.
 ![Icon](https://user-images.githubusercontent.com/67928730/172041007-b16b5c3e-2847-4dbf-8086-0ddc62bc34d7.png)
 ![Icon2](https://user-images.githubusercontent.com/67928730/172041077-92403997-aa07-4c54-ba08-b8c76b25d7da.png)
 ## How to run the web application:
@@ -29,3 +29,4 @@
 5. The application is now ready for testing and new developement. 
 
 ## For more in-detail info about Pollinator Pathway NW Admins, check out the Wiki page:
+#### https://github.com/Cascadia-Connections/pollinator-pathway/wiki
