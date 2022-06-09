@@ -25,7 +25,7 @@
 2. Create a new working branch based on develop (up to date with latest changes)
 3. Build the Application 
 4. To see features working, add at least 3 admin accounts, user profiles, and user uploaded images.
-- How to add images
+  * Add the image as a file and pass the id such as "/api/image?id=3"
 5. The application is now ready for testing and new developement. 
 
 ## For more in-detail info about Pollinator Pathway NW Admins, check out the Wiki page:
