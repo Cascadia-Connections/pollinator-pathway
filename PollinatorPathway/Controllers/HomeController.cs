@@ -1,11 +1,11 @@
-﻿using System.Diagnostics;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using PollinatorPathway.Areas.Identity.Data;
 using PollinatorPathway.Data;
 using PollinatorPathway.Model;
 using PollinatorPathway.ViewModels;
+using System.Diagnostics;
 
 namespace PollinatorPathway.Controllers;
 [Authorize]
@@ -23,13 +23,23 @@ public class HomeController : Controller
         _manager = manager;
     }
 
-   
-   
+
+
     public IActionResult AdminPortal()
     {
-        var userId=  _manager.GetUserId(HttpContext.User);
-        PollinatorPathwayUser user =_identityDbContext.Users.FirstOrDefault (u=> u.Id==userId);
-       
+        //Create User Defaults here 
+        //Assuming this is method used to securely generate a user Id...
+
+        // IS used to validate user logging in
+
+        /*User logs in, this is used to validate the user's information. 
+         * --WHY is CREATE user defaulting here, rather than going to the DB first?
+         * This is preventing data from going to DB == preventing API from functioning */
+
+        var userId = _manager.GetUserId(HttpContext.User);
+        PollinatorPathwayUser user = _identityDbContext.Users.FirstOrDefault(u => u.Id == userId);
+
+
         return View(user);
     }
     [HttpGet]
@@ -38,7 +48,7 @@ public class HomeController : Controller
         IEnumerable<PollinatorPathwayUser> admins = _identityDbContext.Users;
         return View(admins);
     }
-   
+
     [HttpGet]
     public async Task<IActionResult> DeleteAdmin(string id)
     {
@@ -47,13 +57,13 @@ public class HomeController : Controller
         {
             IdentityResult result = await _manager.DeleteAsync(user);
             return RedirectToAction("AdminList");
-           
+
         }
         else
             ModelState.AddModelError("", "User Not Found");
         return View("Index", _manager.Users);
     }
-    
+
     [HttpGet]
     public async Task<IActionResult> UpdateAdmin(string id)
     {
@@ -68,37 +78,37 @@ public class HomeController : Controller
             EmailAddress = user.Email
         };
         return View(adminVM);
-     
+
 
     }
     [HttpPost]
     public async Task<IActionResult> UpdateAdmin(AdminViewModel adminVM)
     {
         PollinatorPathwayUser user = await _manager.FindByEmailAsync(adminVM.EmailAddress);
-        
-            if (!string.IsNullOrEmpty(adminVM.FirstName))
-                user.FirstName = adminVM.FirstName;
-           if (!string.IsNullOrEmpty(adminVM.LastName))
-                user.LastName = adminVM.LastName;
-            if (!string.IsNullOrEmpty(adminVM.EmailAddress))
-                user.Email = adminVM.EmailAddress;
-            if (!string.IsNullOrEmpty(adminVM.Phone))
-                user.PhoneNumber = adminVM.Phone; ModelState.AddModelError("", "Phone number cannot be empty");
-         
+
+        if (!string.IsNullOrEmpty(adminVM.FirstName))
+            user.FirstName = adminVM.FirstName;
+        if (!string.IsNullOrEmpty(adminVM.LastName))
+            user.LastName = adminVM.LastName;
+        if (!string.IsNullOrEmpty(adminVM.EmailAddress))
+            user.Email = adminVM.EmailAddress;
+        if (!string.IsNullOrEmpty(adminVM.Phone))
+            user.PhoneNumber = adminVM.Phone; ModelState.AddModelError("", "Phone number cannot be empty");
+
         var result = await _manager.UpdateAsync(user);
-            if (result.Succeeded)
-                return RedirectToAction("AdminList");
-            else
-                return Error();
-       
+        if (result.Succeeded)
+            return RedirectToAction("AdminList");
+        else
+            return Error();
+
 
     }
 
     [HttpGet]
-    public IActionResult CreateProfile()
+    public RedirectToActionResult CreateProfile()
     {
-       
-        return View(new ProfileViewModel());
+        ProfileViewModel profileViewModel = new ProfileViewModel();
+        return (RedirectToActionResult)CreateProfile(profileViewModel);
     }
 
     [HttpPost]
@@ -129,23 +139,23 @@ public class HomeController : Controller
                 Image3 = userProVM.Image3
 
             };
-           
-           _appDbContext.Add(up);
-           _appDbContext.SaveChanges();
+
+            _appDbContext.Add(up);
+            _appDbContext.SaveChanges();
         }
         else
         {
             return RedirectToAction("CreateProfile", new { id = userProVM.UserId });
         }
 
-            return RedirectToAction("AdminPortal");
+        return RedirectToAction("AdminPortal");
     }
 
     [HttpGet]
     public IActionResult getUsers()
     {
         IEnumerable<UserProfile> users = _appDbContext.UserProfiles;
-        return View("UsersList",users);
+        return View("UsersList", users);
     }
     [HttpPost]
     public IActionResult SearchForProfileByFirstName(string fName)
@@ -162,9 +172,11 @@ public class HomeController : Controller
         IEnumerable<PollinatorPathwayUser> admins = (IEnumerable<PollinatorPathwayUser>)_manager.Users;
         switch (seachType)
         {
-            case "LastName": admins = admins.Where(u => u.LastName.StartsWith(searchValue));
+            case "LastName":
+                admins = admins.Where(u => u.LastName.StartsWith(searchValue));
                 break;
-            case "Email": admins = admins.Where(u => u.Email.Equals(searchValue));
+            case "Email":
+                admins = admins.Where(u => u.Email.Equals(searchValue));
                 break;
 
         }
@@ -172,7 +184,7 @@ public class HomeController : Controller
     }
 
     [HttpPost]
-    public IActionResult UpdateProfile(ProfileViewModel userProVM,long Id)
+    public IActionResult UpdateProfile(ProfileViewModel userProVM, long Id)
     {
         UserProfile up = new UserProfile
         {
@@ -208,7 +220,7 @@ public class HomeController : Controller
     [HttpGet]
     public IActionResult UpdateProfile(long id)
     {
-        var user = _appDbContext.UserProfiles.FirstOrDefault (u=>u.Id==id);
+        var user = _appDbContext.UserProfiles.FirstOrDefault(u => u.Id == id);
         ProfileViewModel profileVM = new ProfileViewModel
         {
             UserId = id,
@@ -247,7 +259,7 @@ public class HomeController : Controller
     [HttpGet]
     public IActionResult ImageApproval()
     {
-        IEnumerable<UploadedImage> images = _appDbContext.UploadedImages.Where(img=> img.IsApproved==false).ToList();
+        IEnumerable<UploadedImage> images = _appDbContext.UploadedImages.Where(img => img.IsApproved == false).ToList();
         return View(images);
     }
 
@@ -261,7 +273,7 @@ public class HomeController : Controller
     [HttpGet]
     public IActionResult ApproveImage(long id)
     {
-        var image= _appDbContext.UploadedImages.FirstOrDefault(img=>img.Id==id);
+        var image = _appDbContext.UploadedImages.FirstOrDefault(img => img.Id == id);
         UploadedImage imageModel = image;
         imageModel.IsApproved = true;
         _appDbContext.Update(imageModel);
@@ -279,6 +291,6 @@ public class HomeController : Controller
         return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
     }
 
-    
+
 }
 

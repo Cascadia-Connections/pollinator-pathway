@@ -1,4 +1,3 @@
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using PollinatorPathway.Areas.Identity.Data;
 using PollinatorPathway.Data;
@@ -25,6 +24,9 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddDefaultIdentity<PollinatorPathwayUser>(options => options.SignIn.RequireConfirmedAccount = false)
     .AddEntityFrameworkStores<AppIdentityDbContext>();
 builder.Services.AddControllersWithViews();
+
+//Configuring AppDbContext for UserProfile DIJ 
+builder.Services.AddScoped<UserProfile>();
 
 var app = builder.Build();
 
