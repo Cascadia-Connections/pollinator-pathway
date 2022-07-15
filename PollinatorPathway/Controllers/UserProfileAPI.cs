@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PollinatorPathway.Data;
 
+
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace PollinatorPathway.Controllers
@@ -17,14 +18,14 @@ namespace PollinatorPathway.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IActionResult Get()
         {
             List<string> UserProfiles = _appDbContext.UserProfiles
                 .Where(u => u.Id != 0)
                 .Select(u => u.FirstName).ToList();
 
 
-            return (IEnumerable<string>)Ok(UserProfiles);
+            return Ok(UserProfiles);
         }
 
         // GET api/<UserProfileAPI>/5
