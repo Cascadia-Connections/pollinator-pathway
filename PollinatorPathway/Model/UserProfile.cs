@@ -1,8 +1,4 @@
-﻿
-
-using System.ComponentModel.DataAnnotations;
-
-namespace PollinatorPathway.Model
+﻿namespace PollinatorPathway.Model
 {
     public class UserProfile
     {

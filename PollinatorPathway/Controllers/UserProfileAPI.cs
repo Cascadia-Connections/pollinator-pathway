@@ -53,7 +53,6 @@ namespace PollinatorPathway.Controllers
                     Image2 = _appDbContext.UserProfiles.Find(id).Image2,
                     Image3 = _appDbContext.UserProfiles.Find(id).Image3,
 
-
                 });
 
 

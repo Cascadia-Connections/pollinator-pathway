@@ -5,10 +5,8 @@ using PollinatorPathway.Model;
 namespace PollinatorPathway.Controllers
 {
 
-    [Route("api/[controller]")]
-    [ApiController]
 
-    public class ImageController : ControllerBase
+    public class ImageController : Controller
     {
         private static IWebHostEnvironment _webHost;
         private readonly AppDbContext _appDbContext;
