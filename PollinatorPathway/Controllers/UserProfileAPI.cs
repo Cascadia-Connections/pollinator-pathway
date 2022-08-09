@@ -20,53 +20,17 @@ namespace PollinatorPathway.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            List<long> UserIds = _appDbContext.UserProfiles
-                .Where<UserProfile>(u => u.Id != 0)
-                .Select(u => u.Id).ToList<long>();
-
-
-            List<UserProfile> users = new List<UserProfile>();
-
-            foreach (var id in UserIds)
-            {
-                users.Add(new UserProfile()
-                {
-                    Id = id,
-                    FirstName = _appDbContext.UserProfiles.Find(id).FirstName,
-                    LastName = _appDbContext.UserProfiles.Find(id).LastName,
-                    EmailAddress = _appDbContext.UserProfiles.Find(id).EmailAddress,
-                    Phone = _appDbContext.UserProfiles.Find(id).Phone,
-                    TeamContact = _appDbContext.UserProfiles.Find(id).TeamContact,
-                    DateJoined = _appDbContext.UserProfiles.Find(id).DateJoined,
-                    Password = _appDbContext.UserProfiles.Find(id).Password,
-                    OrganizationName = _appDbContext.UserProfiles.Find(id).OrganizationName,
-                    OrganizationEmail = _appDbContext.UserProfiles.Find(id).OrganizationEmail,
-                    OrganizationType = _appDbContext.UserProfiles.Find(id).OrganizationType,
-                    WebsiteLink = _appDbContext.UserProfiles.Find(id).WebsiteLink,
-                    SocialMedia = _appDbContext.UserProfiles.Find(id).SocialMedia,
-                    IsPrivate = _appDbContext.UserProfiles.Find(id).IsPrivate,
-                    Address = _appDbContext.UserProfiles.Find(id).Address,
-                    GPS = _appDbContext.UserProfiles.Find(id).GPS,
-                    PlantName = _appDbContext.UserProfiles.Find(id).PlantName,
-                    PlantDesc = _appDbContext.UserProfiles.Find(id).PlantDesc,
-                    Image1 = _appDbContext.UserProfiles.Find(id).Image1,
-                    Image2 = _appDbContext.UserProfiles.Find(id).Image2,
-                    Image3 = _appDbContext.UserProfiles.Find(id).Image3,
-
-
-                });
-
-
-            }
+            IEnumerable<UserProfile> users = _appDbContext.UserProfiles;
 
             return Ok(users);
         }
 
         // GET api/<UserProfileAPI>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public IActionResult Get(int id)
         {
-            return "value";
+            UserProfile? user = _appDbContext.UserProfiles.SingleOrDefault(u => u.Id == id);
+            return Ok(user);
         }
 
         // POST api/<UserProfileAPI>
