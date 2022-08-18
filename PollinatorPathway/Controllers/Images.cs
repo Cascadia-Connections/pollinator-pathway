@@ -7,12 +7,12 @@ namespace PollinatorPathway.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ImageAPI : ControllerBase
+    public class Images : ControllerBase
     {
 
         private readonly AppDbContext _appDbContext;
 
-        public ImageAPI(AppDbContext appDbContext)
+        public Images(AppDbContext appDbContext)
         {
             _appDbContext = appDbContext;
         }

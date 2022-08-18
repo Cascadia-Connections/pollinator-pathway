@@ -8,11 +8,11 @@ namespace PollinatorPathway.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UserProfileAPI : ControllerBase
+    public class Profiles : ControllerBase
     {
         private readonly AppDbContext _appDbContext;
 
-        public UserProfileAPI(AppDbContext appDbContext)
+        public Profiles(AppDbContext appDbContext)
         {
             _appDbContext = appDbContext;
         }
