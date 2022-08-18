@@ -1,17 +1,10 @@
-﻿using System.Diagnostics;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Hosting;
-using PollinatorPathway.Areas.Identity.Data;
+﻿using Microsoft.AspNetCore.Mvc;
 using PollinatorPathway.Data;
 using PollinatorPathway.Model;
-using PollinatorPathway.ViewModels;
-using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
 
 namespace PollinatorPathway.Controllers
 {
-    
+
     [Route("api/[controller]")]
     [ApiController]
 
@@ -24,13 +17,13 @@ namespace PollinatorPathway.Controllers
             _webHost = webHost;
             _appDbContext = appDbContext;
         }
-       
+
         [HttpPost]
-        public IActionResult Post(IFormFile img, [FromQuery]long id)
+        public IActionResult Post(IFormFile img, [FromQuery] long id)
         {
             if (ModelState.IsValid)
             {
-              
+
                 var UploadedImage = new UploadedImage();
 
                 using (MemoryStream ms = new MemoryStream())
@@ -59,7 +52,7 @@ namespace PollinatorPathway.Controllers
             {
                 return BadRequest("Upload Failed");
             }
-           
+
         }
     }
 }
