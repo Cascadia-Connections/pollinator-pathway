@@ -7,7 +7,7 @@
         public byte[] File { get; set; }
         public string Name { get; set; }
 
-        public UserProfile Uploader { get; set; }
+        public virtual UserProfile Uploader { get; set; }
 
 
     }
