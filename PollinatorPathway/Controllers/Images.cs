@@ -39,6 +39,7 @@ namespace PollinatorPathway.Controllers
         // GET: ImageAPI/Create
         public ActionResult Create()
         {
+
             return Ok();
         }
 
