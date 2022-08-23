@@ -53,6 +53,7 @@ namespace PollinatorPathway.Controllers
         [HttpPost]
         public async void Post([FromBody] UserProfile user)
         {
+
             _appDbContext.UserProfiles.Add(user);
             _appDbContext.SaveChanges();
 
