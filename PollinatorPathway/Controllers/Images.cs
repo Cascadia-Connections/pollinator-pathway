@@ -75,21 +75,24 @@ namespace PollinatorPathway.Controllers
 
         // PUT api/<Images>/5
         [HttpPut("{id}")]
-        public void Put(long id, [FromBody] UploadedImage image)
+        public void Put(long id, [FromBody] object image)
         {
             if (id > 0)
             {
-                UploadedImage update = image;
+                string img = image.ToString(); //Successfully converts the image object to a JSON string with markup
+                UploadedImage update = (UploadedImage)JSONDeserializer.Deserialize<UploadedImage>(img); // Successfully converts JSON String to Uploaded Image object.
+
                 UploadedImage currentImage = _appDbContext.UploadedImages.Find(id);
-
-
                 if (update != null)
                 {
-                    update.IsApproved = update.IsApproved != null ? (Boolean)update.IsApproved : currentImage.IsApproved;
-                    update.File = update.File != null ? (Byte[])update.File : currentImage.File;
-                    update.Name = update.Name != null ? update.Name : currentImage.Name;
-                    update.Uploader = update.Uploader != null ? (UserProfile)update.Uploader : currentImage.Uploader;
+                    currentImage.IsApproved = update.IsApproved != null ? (Boolean)update.IsApproved : currentImage.IsApproved;
+                    currentImage.File = update.File != null ? (Byte[])update.File : currentImage.File;
+                    currentImage.Name = update.Name != null ? update.Name : currentImage.Name;
+                    currentImage.Uploader = update.Uploader != null ? (UserProfile)update.Uploader : currentImage.Uploader;
                 }
+
+                _appDbContext.UploadedImages.Update(currentImage);
+                _appDbContext.SaveChanges();
             }
         }
 
