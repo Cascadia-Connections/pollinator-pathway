@@ -52,23 +52,29 @@ namespace PollinatorPathway.Controllers
 
         // POST api/<Images>
         [HttpPost]
-        public async Task<ActionResult<UploadedImage>> Post([FromBody] UploadedImage userImage) //does pass a string argument in JSON FORMATTING (object obtain)
+        public void Post([FromBody] UploadedImage image) //does pass a string argument in JSON FORMATTING (object obtain)
         {
 
+            //    "errors": {
+            //        "image": [
+            //            "The image field is required."
+            //],
+            //"$.File": [
+            //    "The JSON value could not be converted to System.Byte[]. Path: $.File | LineNumber: 2 | BytePositionInLine: 22."
+            //]
 
-            _appDbContext.UploadedImages.Add(userImage);
-            await _appDbContext.SaveChangesAsync();
+
 
             //string splitPattern = @"\,";
             //Regex test = new(splitPattern);
 
-            //string[] returnedArray = test.Split(obtain.ToString()); //Succesfully separated into array, comma removed.
+            //string[] returnedArray = test.Split(image.ToString()); //Succesfully separated into array, comma removed.
 
             //foreach (string s in returnedArray)
             //{
             //    System.Diagnostics.Debug.WriteLine(s);
-            //}
-            return CreatedAtAction(nameof(Get), new { id = userImage.Id }, userImage);
+            //} Regex option if all else fails
+
         }
 
         // PUT api/<Images>/5
