@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using PollinatorPathway.Data;
 using PollinatorPathway.Model;
+using PollinatorPathway.Utility;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -18,6 +19,7 @@ namespace PollinatorPathway.Controllers
         {
             _appDbContext = appDbContext;
         }
+
 
 
         [HttpGet]
@@ -52,28 +54,22 @@ namespace PollinatorPathway.Controllers
 
         // POST api/<Images>
         [HttpPost]
-        public void Post([FromBody] UploadedImage image) //does pass a string argument in JSON FORMATTING (object obtain)
+        public void Post([FromBody] object image) //does pass a string argument in JSON FORMATTING (object obtain) ---! The JSON object from the body is not being passed to the method
         {
+            //Deserializing is required due to lack of internal support for Byte[].
 
-            //    "errors": {
-            //        "image": [
-            //            "The image field is required."
-            //],
-            //"$.File": [
-            //    "The JSON value could not be converted to System.Byte[]. Path: $.File | LineNumber: 2 | BytePositionInLine: 22."
-            //]
+            string img = image.ToString(); //Successfully converts the image object to a JSON string with markup
+            UploadedImage addDB = (UploadedImage)JSONDeserializer.Deserialize<UploadedImage>(img); // Successfully converts JSON String to Uploaded Image object.
+
+            UserProfile associatedUser = _appDbContext.UserProfiles.Find(addDB.Uploader.Id); // Successfully locates Uploader record in UserProfile table and sets associatedUser to that object.
+
+            addDB.Uploader = associatedUser;
 
 
+            //Look into Lazy Loading -- 
 
-            //string splitPattern = @"\,";
-            //Regex test = new(splitPattern);
-
-            //string[] returnedArray = test.Split(image.ToString()); //Succesfully separated into array, comma removed.
-
-            //foreach (string s in returnedArray)
-            //{
-            //    System.Diagnostics.Debug.WriteLine(s);
-            //} Regex option if all else fails
+            _appDbContext.UploadedImages.Add(addDB);//issue with setting uploaderid -- need identity_insert set to enabled
+            _appDbContext.SaveChanges();
 
         }
 
