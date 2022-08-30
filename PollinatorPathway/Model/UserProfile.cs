@@ -1,8 +1,4 @@
-﻿
-
-using System.ComponentModel.DataAnnotations;
-
-namespace PollinatorPathway.Model
+﻿namespace PollinatorPathway.Model
 {
     public class UserProfile
     {
@@ -31,6 +27,6 @@ namespace PollinatorPathway.Model
         public string? PlantDesc { get; set; }
         public string? Image1 { get; set; }
         public string? Image2 { get; set; }
-        public string? Image3 { get; set; }
+        public string? Image3 { get; set; } // List of Uploaded Images, virtual keyword, 
     }
 }
